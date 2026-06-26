@@ -1,1 +1,2086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adekani — Professional Websites Built for Growing Businesses</title>
 
+  <!-- ========== FACEBOOK PIXEL BASE CODE — PASTE HERE ========== -->
+  
+  <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '7408695749250890');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=7408695749250890&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+  <!-- ========== END FACEBOOK PIXEL BASE CODE ========== -->
+  
+  <!-- Google Fonts: Cormorant Garamond for elegant headings, Inter for clean readable text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            // Warm, trustworthy golden-amber primary accent
+            accent: {
+              light: '#fdf4e3',
+              DEFAULT: '#d97706', // warm amber
+              dark: '#b45309',
+            },
+            nearBlack: '#1a1a1a',
+            nearWhite: '#fcfcfc',
+            surfaceGray: '#f5f5f5',
+            mediumGray: '#555555',
+            errorRed: '#c0392b',
+            liveRed: '#ef4444'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Global Overrides and Layout Tweaks */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fcfcfc;
+      color: #1a1a1a;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .font-heading {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    
+    /* Smooth custom transitions */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Social ticker sliding animation */
+    .ticker-container {
+      height: 60px;
+      overflow: hidden;
+      position: relative;
+    }
+    .ticker-wrapper {
+      position: absolute;
+      width: 100%;
+      transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Client strip continuous scrolling CSS animation */
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+
+    /* Fast, smooth expand/collapse style for step cards */
+    .expandable-card-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 300ms ease;
+    }
+    .card-selected .expandable-card-content {
+      max-height: 500px; /* generous boundary */
+    }
+
+    /* Pulsing Dot animation for Live requests */
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
+    .live-pulse {
+      animation: pulse-dot 1.5s infinite ease-in-out;
+    }
+  </style>
+
+</head>
+<body class="bg-nearWhite min-h-screen flex flex-col antialiased selection:bg-accent selection:text-white">
+
+  <!-- Header Branding -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-gray-100 py-4 px-6 shadow-sm">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <a href="#home" class="flex items-center space-x-2">
+        <span class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-white font-bold text-lg shadow-sm">A</span>
+        <span class="font-semibold text-lg tracking-tight text-nearBlack">adekani</span>
+      </a>
+      <div class="flex items-center space-x-4">
+        <a href="#form" class="bg-accent hover:bg-accent-dark text-white font-medium px-4 py-2 rounded-lg text-sm transition-all focus:ring-2 focus:ring-offset-2 focus:ring-accent inline-flex items-center gap-1 shadow-sm">
+          Get Started <span class="text-xs">→</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN SPA CONTENT CONTAINER -->
+  <main class="flex-grow">
+
+    <!-- ============================================== -->
+    <!-- HOME VIEW (LANDING PAGE)                       -->
+    <!-- ============================================== -->
+    <section id="view-home" class="hidden">
+      
+      <!-- HERO SECTION -->
+      <section class="min-h-[85vh] flex flex-col justify-center items-center text-center px-4 py-20 bg-gradient-to-b from-amber-50/30 to-white">
+        <div class="max-w-3xl mx-auto">
+          <h1 class="font-heading text-nearBlack text-5xl md:text-7xl font-semibold mb-6 leading-tight">
+            Your Business Deserves To Be Online.
+          </h1>
+          <p class="text-mediumGray text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-sans">
+            We build websites that work for you — simple, powerful, and ready to grow with you. No complicated codes, no technical stress.
+          </p>
+          
+          <div class="flex flex-col items-center gap-4 w-full sm:w-auto px-4">
+            <a href="#form" class="w-full sm:w-auto text-center bg-accent hover:bg-accent-dark text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all shadow-md transform hover:-translate-y-0.5 inline-block focus:ring-4 focus:ring-accent-light">
+              Get Your Website →
+            </a>
+
+            <!-- Resume / Start Over Prompt Container -->
+            <div id="resume-container" class="hidden flex text-sm flex-wrap justify-center items-center gap-2 mt-2">
+              <span class="text-mediumGray">You have an unfinished request:</span>
+              <a href="#form" class="text-accent font-semibold hover:underline">Continue where you left off →</a>
+              <span class="text-gray-300">|</span>
+              <button onclick="clearAndStartOver()" class="text-gray-400 hover:text-mediumGray underline text-xs">Start over</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHAT WE BUILD SECTION -->
+      <section class="py-24 px-6 bg-white border-y border-gray-50 fade-in-section">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="font-heading text-nearBlack text-3xl md:text-5xl font-semibold mb-4">
+              Whatever You Need, We Build It.
+            </h2>
+            <p class="text-mediumGray text-base max-w-lg mx-auto">
+              We design simple digital solutions suited for every stage of your business.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="bg-nearWhite border border-gray-100 p-8 rounded-2xl hover:border-accent/40 transition-all shadow-sm">
+              <div class="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center text-accent text-xl mb-6">
+                <i class="fa-solid fa-briefcase"></i>
+              </div>
+              <h3 class="font-sans text-xl font-bold text-nearBlack mb-3">Business Website</h3>
+              <p class="text-mediumGray leading-relaxed text-base">
+                Show your services, your story, and your contact. Simple. Clean. Professional.
+              </p>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-nearWhite border border-gray-100 p-8 rounded-2xl hover:border-accent/40 transition-all shadow-sm">
+              <div class="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center text-accent text-xl mb-6">
+                <i class="fa-solid fa-list"></i>
+              </div>
+              <h3 class="font-sans text-xl font-bold text-nearBlack mb-3">Product & Property Listings</h3>
+              <p class="text-mediumGray leading-relaxed text-base">
+                List your cars, properties, or products. Update them anytime from your own dashboard.
+              </p>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-nearWhite border border-gray-100 p-8 rounded-2xl hover:border-accent/40 transition-all shadow-sm">
+              <div class="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center text-accent text-xl mb-6">
+                <i class="fa-solid fa-newspaper"></i>
+              </div>
+              <h3 class="font-sans text-xl font-bold text-nearBlack mb-3">Blog & News Site</h3>
+              <p class="text-mediumGray leading-relaxed text-base">
+                Publish updates, articles, or news. Keep your audience coming back.
+              </p>
+            </div>
+            <!-- Card 4 -->
+            <div class="bg-nearWhite border border-gray-100 p-8 rounded-2xl hover:border-accent/40 transition-all shadow-sm">
+              <div class="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center text-accent text-xl mb-6">
+                <i class="fa-solid fa-gears"></i>
+              </div>
+              <h3 class="font-sans text-xl font-bold text-nearBlack mb-3">Advanced Web Systems</h3>
+              <p class="text-mediumGray leading-relaxed text-base">
+                User accounts. Payments. Databases. AI. For businesses that need serious power.
+              </p>
+            </div>
+            <!-- Card 5 -->
+            <div class="bg-nearWhite border border-gray-100 p-8 rounded-2xl hover:border-accent/40 transition-all shadow-sm">
+              <div class="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center text-accent text-xl mb-6">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <h3 class="font-sans text-xl font-bold text-nearBlack mb-3">Professional Email</h3>
+              <p class="text-mediumGray leading-relaxed text-base">
+                Get a business email like you@yourbusiness.com. Look the part.
+              </p>
+            </div>
+            <!-- Card 6 -->
+            <div class="bg-nearWhite border border-gray-100 p-8 rounded-2xl hover:border-accent/40 transition-all shadow-sm">
+              <div class="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center text-accent text-xl mb-6">
+                <i class="fa-solid fa-comments"></i>
+              </div>
+              <h3 class="font-sans text-xl font-bold text-nearBlack mb-3">Custom Needs</h3>
+              <p class="text-mediumGray leading-relaxed text-base">
+                Not sure what you need? Tell us. We'll figure it out together.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO SECTION -->
+      <section class="py-24 px-6 bg-nearWhite fade-in-section">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="font-heading text-nearBlack text-3xl md:text-5xl font-semibold mb-4">
+              Work We Have Done.
+            </h2>
+            <p class="text-mediumGray text-base max-w-lg mx-auto">
+              Real websites. Real businesses.
+            </p>
+          </div>
+
+          <!-- Grid with alternate Desktop (16:9) and Mobile (9:16) aspect ratios -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+            <!-- Slot 1: Desktop 16:9 -->
+			<div class="group bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:border-accent transition-all">
+              <div class="aspect-video bg-gray-100 rounded-lg flex flex-col justify-center items-center text-center p-4 relative overflow-hidden group-hover:scale-[1.01] transition-all">
+                <!-- REPLACE: insert screenshot of corporate website here -->
+                 <img src="./sites/assertio.jpg" alt="Assertio desktop view" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.01] transition-all" loading="lazy">
+              </div>
+              <p class="mt-4 text-sm font-medium text-nearBlack">Branding Firm</p>
+            </div>
+
+            <!-- Slot 2: Mobile 9:16 (spans longer vertically) -->
+            <div class="group bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:border-accent transition-all">
+              <div class="aspect-[9/16] bg-gray-100 rounded-lg flex flex-col justify-center items-center text-center p-4 relative overflow-hidden group-hover:scale-[1.01] transition-all">
+                <!-- REPLACE: insert screenshot of corporate website here -->
+                 <img src="./sites/ii.jpg" alt="icon intelligence mobile view" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.01] transition-all" loading="lazy">
+              </div>
+              <p class="mt-4 text-sm font-medium text-nearBlack">AI Marketing Brand</p>
+            </div>
+
+            <!-- Slot 3: Desktop 16:9 -->
+            <div class="group bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:border-accent transition-all">
+              <div class="aspect-video bg-gray-100 rounded-lg flex flex-col justify-center items-center text-center p-4 relative overflow-hidden group-hover:scale-[1.01] transition-all">
+                <!-- REPLACE: insert screenshot of corporate website here -->
+                 <img src="./sites/afriglobal.jpg" alt="afriglobal desktop view" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.01] transition-all" loading="lazy">
+              </div>
+              <p class="mt-4 text-sm font-medium text-nearBlack">Hospital and Pharmaceutical Management Institution</p>
+            </div>
+            
+            <!-- Slot 5: Mobile 9:16 -->
+            <div class="group bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:border-accent transition-all">
+              <div class="aspect-[9/16] bg-gray-100 rounded-lg flex flex-col justify-center items-center text-center p-4 relative overflow-hidden group-hover:scale-[1.01] transition-all">
+                <!-- REPLACE: insert screenshot of corporate website here -->
+                 <img src="./sites/auto.jpg" alt="icon auto desktop view" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.01] transition-all" loading="lazy">
+              </div>
+              <p class="mt-4 text-sm font-medium text-nearBlack">Car Dealership</p>
+            </div>
+
+            <!-- Slot 4: Desktop 16:9 -->
+            <div class="group bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:border-accent transition-all">
+              <div class="aspect-video bg-gray-100 rounded-lg flex flex-col justify-center items-center text-center p-4 relative overflow-hidden group-hover:scale-[1.01] transition-all">
+                <!-- REPLACE: insert screenshot of corporate website here -->
+                 <img src="./sites/louis.jpg" alt="Louis EduPlus desktop view" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.01] transition-all" loading="lazy">
+              </div>
+              <p class="mt-4 text-sm font-medium text-nearBlack">Educational Consultancy Brand</p>
+            </div>
+
+            <!-- Slot 5: Mobile 9:16 -->
+            <div class="group bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:border-accent transition-all">
+              <div class="aspect-[9/16] bg-gray-100 rounded-lg flex flex-col justify-center items-center text-center p-4 relative overflow-hidden group-hover:scale-[1.01] transition-all">
+                <!-- REPLACE: insert screenshot of corporate website here -->
+                 <img src="./sites/jito.jpg" alt="jito mobile view" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.01] transition-all" loading="lazy">
+              </div>
+              <p class="mt-4 text-sm font-medium text-nearBlack">Premium Real Estate Brand</p>
+            </div>
+
+            <!-- Slot 6: Desktop 16:9 -->
+            <div class="group bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:border-accent transition-all">
+              <div class="aspect-video bg-gray-100 rounded-lg flex flex-col justify-center items-center text-center p-4 relative overflow-hidden group-hover:scale-[1.01] transition-all">
+                <!-- REPLACE: insert screenshot of corporate website here -->
+                 <img src="./sites/solar.jpg" alt="Assertio desktop view" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.01] transition-all" loading="lazy">
+              </div>
+              <p class="mt-4 text-sm font-medium text-nearBlack">Solar installation Company</p>
+            </div>
+            
+            <!-- Slot 5: Mobile 9:16 -->
+            <div class="group bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:border-accent transition-all">
+              <div class="aspect-[9/16] bg-gray-100 rounded-lg flex flex-col justify-center items-center text-center p-4 relative overflow-hidden group-hover:scale-[1.01] transition-all">
+                <!-- REPLACE: insert screenshot of corporate website here -->
+                 <img src="./sites/regis.jpg" alt="Assertio desktop view" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.01] transition-all" loading="lazy">
+              </div>
+              <p class="mt-4 text-sm font-medium text-nearBlack">Chess Game Web app</p>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+
+      <!-- CLIENTS SECTION -->
+      <section class="py-24 bg-white overflow-hidden border-t border-gray-100 fade-in-section">
+        <div class="max-w-6xl mx-auto px-6 mb-12 text-center">
+          <h2 class="font-heading text-nearBlack text-3xl md:text-5xl font-semibold mb-2">
+            Trusted By Businesses Across The World.
+          </h2>
+        </div>
+
+        <!-- Horizontal continuous scrolling strip (Logo marquee) -->
+<div class="relative w-full flex overflow-x-hidden border-y border-gray-100 py-8 bg-gray-50/50">
+  <div class="animate-marquee whitespace-nowrap flex gap-16 items-center">
+    
+    <!-- Logo Items Set 1 -->
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/rejfresh.png" alt="Rejfresh" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">De-Sure Rejfresh Tech</span>
+      <span class="text-xs text-mediumGray">Nigeria</span>
+    </div>
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/auto.png" alt="Icon Automotive" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">Icon Automotive</span>
+      <span class="text-xs text-mediumGray">Nigeria</span>
+    </div>
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/mba.png" alt="MBisAfrican" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">MBisAfrican</span>
+      <span class="text-xs text-mediumGray">USA</span>
+    </div>
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/tuss.png" alt="TUSS Global" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">TUSS Global</span>
+      <span class="text-xs text-mediumGray">USA</span>
+    </div>
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/louis.png" alt="Louis EduPlus" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">Louis EduPlus</span>
+      <span class="text-xs text-mediumGray">UK</span>
+    </div>
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/ii.png" alt="Icon Intelligence" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">Icon Intelligence</span>
+      <span class="text-xs text-mediumGray">Nigeria</span>
+    </div>
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/afri-logo.jpg" alt="Afriglobal Health" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">Afriglobal Health</span>
+      <span class="text-xs text-mediumGray">Nigeria & USA</span>
+    </div>
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/assertio.png" alt="Assertio" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">Assortio</span>
+      <span class="text-xs text-mediumGray">Nigeria</span>
+    </div>
+
+    <!-- Logo Items Set 2 — EXACT clone of Set 1 for seamless loop -->
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/rejfresh.png" alt="Rejfresh" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">De-Sure Rejfresh Tech</span>
+      <span class="text-xs text-mediumGray">Nigeria</span>
+    </div>
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/auto.png" alt="Icon Automotive" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">Icon Automotive</span>
+      <span class="text-xs text-mediumGray">Nigeria</span>
+    </div>
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/mba.png" alt="MBisAfrican" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">MBisAfrican</span>
+      <span class="text-xs text-mediumGray">USA</span>
+    </div>
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/tuss.png" alt="TUSS Global" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">TUSS Global</span>
+      <span class="text-xs text-mediumGray">USA</span>
+    </div>
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/louis.png" alt="Louis EduPlus" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">Louis EduPlus</span>
+      <span class="text-xs text-mediumGray">UK</span>
+    </div>
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/ii.png" alt="Icon Intelligence" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">Icon Intelligence</span>
+      <span class="text-xs text-mediumGray">Nigeria</span>
+    </div>
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/afri-logo.jpg" alt="Afriglobal Health" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">Afriglobal Health</span>
+      <span class="text-xs text-mediumGray">Nigeria & USA</span>
+    </div>
+    <div class="inline-flex flex-col items-center justify-center min-w-[140px]">
+      <img src="./logos/assertio.png" alt="Assertio" class="h-12 object-contain mb-1">
+      <span class="text-base font-bold text-nearBlack tracking-wide">Assortio</span>
+      <span class="text-xs text-mediumGray">Nigeria</span>
+    </div>
+
+  </div>
+</div>
+
+        <!-- Plain Trust Lines -->
+        <div class="max-w-4xl mx-auto px-6 mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div class="border-t border-gray-100 pt-6">
+            <p class="text-base font-medium text-nearBlack">Clients in the US, UK, and Nigeria.</p>
+          </div>
+          <div class="border-t border-gray-100 pt-6">
+            <p class="text-base font-medium text-nearBlack">Real businesses. Real results.</p>
+          </div>
+          <div class="border-t border-gray-100 pt-6">
+            <p class="text-base font-medium text-nearBlack">Every website built to last.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- OBJECTIONS / ACCORDION SECTION -->
+      <section class="py-24 px-6 bg-nearWhite border-t border-gray-100 fade-in-section">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="font-heading text-nearBlack text-3xl md:text-5xl font-semibold mb-4">
+              Still thinking about it?
+            </h2>
+            <p class="text-mediumGray text-base">We have simple answers to questions most business owners ask us.</p>
+          </div>
+
+          <!-- Accordion Group -->
+          <div class="space-y-4">
+            <!-- Accordion Item 1 -->
+            <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+              <button onclick="toggleAccordion(1)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                <span class="font-bold text-base md:text-lg text-nearBlack">Is it worth it?</span>
+                <span id="accordion-icon-1" class="text-accent text-lg"><i class="fa-solid fa-plus"></i></span>
+              </button>
+              <div id="accordion-body-1" class="hidden px-6 pb-6 text-mediumGray leading-relaxed text-sm md:text-base border-t border-gray-50 pt-4">
+                Your website works for you every day — even when you're asleep. It brings in customers, shows your credibility, and answers questions without you lifting a finger.
+              </div>
+            </div>
+
+            <!-- Accordion Item 2 -->
+            <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+              <button onclick="toggleAccordion(2)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                <span class="font-bold text-base md:text-lg text-nearBlack">What if I'm not tech-savvy?</span>
+                <span id="accordion-icon-2" class="text-accent text-lg"><i class="fa-solid fa-plus"></i></span>
+              </button>
+              <div id="accordion-body-2" class="hidden px-6 pb-6 text-mediumGray leading-relaxed text-sm md:text-base border-t border-gray-50 pt-4">
+                You don't need to be. We handle everything — from setup to launch. If you want to make updates yourself later, we make it simple enough to do without touching any code.
+              </div>
+            </div>
+
+            <!-- Accordion Item 3 -->
+            <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+              <button onclick="toggleAccordion(3)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                <span class="font-bold text-base md:text-lg text-nearBlack">My business is too small.</span>
+                <span id="accordion-icon-3" class="text-accent text-lg"><i class="fa-solid fa-plus"></i></span>
+              </button>
+              <div id="accordion-body-3" class="hidden px-6 pb-6 text-mediumGray leading-relaxed text-sm md:text-base border-t border-gray-50 pt-4">
+                There's a package for every size. Starting early gives your business a head start online before your competitors catch on.
+              </div>
+            </div>
+
+            <!-- Accordion Item 4 -->
+            <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+              <button onclick="toggleAccordion(4)" class="w-full flex items-center justify-between p-6 text-left focus:outline-none">
+                <span class="font-bold text-base md:text-lg text-nearBlack">How long will it take?</span>
+                <span id="accordion-icon-4" class="text-accent text-lg"><i class="fa-solid fa-plus"></i></span>
+              </button>
+              <div id="accordion-body-4" class="hidden px-6 pb-6 text-mediumGray leading-relaxed text-sm md:text-base border-t border-gray-50 pt-4">
+                Some websites can be ready in 10 to 14 working days. We move at your pace to make sure everything is right.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="py-24 px-6 bg-gradient-to-t from-amber-50/20 to-white text-center border-t border-gray-100 fade-in-section">
+        <div class="max-w-2xl mx-auto">
+          <h2 class="font-heading text-nearBlack text-3xl md:text-5xl font-semibold mb-4">
+            Your Website Is One Step Away.
+          </h2>
+          <p class="text-mediumGray text-base md:text-lg mb-8 max-w-md mx-auto">
+            No commitment. Just tell us what you need and we'll put together a plan.
+          </p>
+          <a href="#form" class="w-full sm:w-auto text-center bg-accent hover:bg-accent-dark text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all shadow-md transform hover:-translate-y-0.5 inline-block focus:ring-4 focus:ring-accent-light">
+            Get My Website Now →
+          </a>
+          <p class="text-xs text-gray-400 mt-4 font-medium">
+            No upfront payment required to send your request.
+          </p>
+        </div>
+      </section>
+
+    </section>
+
+    <!-- ============================================== -->
+    <!-- FORM VIEW (MULTI-STEP LEAD QUALIFICATION)     -->
+    <!-- ============================================== -->
+    <section id="view-form" class="hidden py-12 px-4 max-w-2xl mx-auto min-h-[80vh] flex flex-col justify-start">
+      
+      <!-- Upper Header Navigation inside Form (Progress indicators only) -->
+      <div class="flex items-center justify-between mb-4">
+        <span class="text-xs font-bold text-mediumGray uppercase tracking-wider">Proposal Builder</span>
+        <span id="form-step-badge" class="text-xs font-bold text-accent bg-accent-light px-3 py-1 rounded-full">Step 1 of 5</span>
+      </div>
+
+      <!-- Progress Bar Segmented/Continuous -->
+      <div class="w-full bg-gray-100 h-2 rounded-full mb-8 overflow-hidden">
+        <div id="form-progress-bar" class="bg-accent h-full w-1/5 transition-all duration-300"></div>
+      </div>
+
+      <!-- Alert Container for validations -->
+      <div id="form-error-alert" class="hidden mb-6 p-4 bg-red-50 border border-red-200 text-errorRed rounded-xl text-sm flex items-center gap-2">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span id="form-error-message">Error explanation goes here.</span>
+      </div>
+
+      <!-- STEP CONTAINER (Contents will swap dynamically inside here) -->
+      <div id="step-content-container" class="bg-white border border-gray-100 rounded-2xl p-6 md:p-8 shadow-sm transition-all duration-300 relative">
+        
+        <!-- STEP 1 VIEW -->
+        <div id="form-step-1" class="step-view hidden">
+          <h2 class="text-2xl md:text-3xl font-bold text-nearBlack mb-2 font-sans">Let's start with you.</h2>
+          <p class="text-mediumGray text-sm mb-6">Tell us a little about who you are and what your business is about.</p>
+
+          <div class="space-y-5">
+            <div>
+              <label class="block text-sm font-medium text-nearBlack mb-2">Your name *</label>
+              <input type="text" id="input-full-name" oninput="saveCurrentField('full_name', this.value)" placeholder="Enter your full name" class="w-full min-h-[48px] px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-nearBlack text-base">
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-nearBlack mb-2">Your business name *</label>
+              <input type="text" id="input-business-name" oninput="saveCurrentField('business_name', this.value)" placeholder="Your registered or trading name" class="w-full min-h-[48px] px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-nearBlack text-base">
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-nearBlack mb-2">What does your business do? *</label>
+              <textarea id="input-business-desc" oninput="handleBusinessDescInput(this)" rows="3" placeholder="Examples: We sell fashion accessories. We deal in real estate." class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-nearBlack text-base"></textarea>
+              <div class="text-right text-xs text-mediumGray mt-1" id="desc-char-counter">0 / 200</div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex gap-3">
+            <button onclick="handleFormBack()" class="flex-1 min-h-[48px] border border-gray-200 hover:border-gray-300 text-mediumGray hover:text-nearBlack font-semibold py-3 px-6 rounded-lg transition-all text-base">
+              ← Back
+            </button>
+            <button onclick="advanceStep()" class="flex-[2] min-h-[48px] bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-lg transition-all text-base focus:ring-4 focus:ring-accent-light">
+              Next →
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2 VIEW -->
+        <div id="form-step-2" class="step-view hidden">
+          <h2 class="text-2xl md:text-3xl font-bold text-nearBlack mb-2 font-sans">What is your budget?</h2>
+          <p class="text-mediumGray text-sm mb-6">Pick the range that's closest to what you can work with.</p>
+
+          <div class="space-y-4" id="budget-options-container">
+            <!-- Option cards generated dynamically inside script -->
+          </div>
+
+          <div class="mt-8 flex gap-3">
+            <button onclick="handleFormBack()" class="flex-1 min-h-[48px] border border-gray-200 hover:border-gray-300 text-mediumGray hover:text-nearBlack font-semibold py-3 px-6 rounded-lg transition-all text-base">
+              ← Back
+            </button>
+            <button onclick="advanceStep()" class="flex-[2] min-h-[48px] bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-lg transition-all text-base focus:ring-4 focus:ring-accent-light">
+              Next →
+            </button>
+          </div>
+        </div>
+
+        <!-- DEAD-END CONFIRM VIEW -->
+        <div id="form-step-dead-confirm" class="step-view hidden text-center py-4">
+          <div class="w-16 h-16 rounded-full bg-amber-50 flex items-center justify-center text-accent text-2xl mx-auto mb-6">
+            <i class="fa-solid fa-circle-question"></i>
+          </div>
+          <h2 class="text-2xl font-bold text-nearBlack mb-3">Just to confirm...</h2>
+          <p class="text-mediumGray mb-8 leading-relaxed max-w-md mx-auto">
+            You selected a budget of under ₦50,000. Is that correct?
+          </p>
+
+          <div class="flex flex-col gap-3">
+            <button onclick="submitDeadEnd()" class="w-full min-h-[48px] bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-lg transition-all text-base">
+              Yes, that's my budget
+            </button>
+            <button onclick="returnToBudgetStep()" class="w-full min-h-[48px] bg-white border border-gray-200 text-mediumGray hover:text-nearBlack font-medium py-3 px-6 rounded-lg transition-all text-base">
+              ← Go back and change it
+            </button>
+          </div>
+        </div>
+
+        <!-- DEAD-END MESSAGE VIEW -->
+        <div id="form-step-dead-message" class="step-view hidden text-center py-6">
+          <div class="w-20 h-20 rounded-full bg-amber-50 flex items-center justify-center text-accent text-3xl mx-auto mb-6">
+            <i class="fa-solid fa-hourglass-half"></i>
+          </div>
+          <p class="text-nearBlack text-lg font-medium mb-4 max-w-sm mx-auto leading-relaxed">
+            We don't have a package in this price range right now.
+          </p>
+          <p class="text-mediumGray text-sm mb-8 max-w-xs mx-auto leading-relaxed">
+            We'll reach out when something new launches that fits your budget.
+          </p>
+          <button onclick="returnToBudgetStep()" class="w-full min-h-[48px] bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-lg transition-all text-base">
+            ← Go back and change my budget
+          </button>
+        </div>
+
+        <!-- STEP 3 VIEW -->
+        <div id="form-step-3" class="step-view hidden">
+          <h2 class="text-2xl md:text-3xl font-bold text-nearBlack mb-2 font-sans">What kind of website do you need?</h2>
+          <p class="text-mediumGray text-sm mb-4">Select an active option to see included features. Greyed out plans require a higher budget tier.</p>
+          
+          <button onclick="openPlansModal()" class="text-accent hover:text-accent-dark font-medium text-sm flex items-center gap-1.5 mb-6 underline focus:outline-none">
+            See what's in each plan →
+          </button>
+
+          <div class="space-y-4" id="website-type-container">
+            <!-- Generated based on budget dynamically (available items first, greyed out items after) -->
+          </div>
+
+          <div class="mt-8 flex gap-3">
+            <button onclick="handleFormBack()" class="flex-1 min-h-[48px] border border-gray-200 hover:border-gray-300 text-mediumGray hover:text-nearBlack font-semibold py-3 px-6 rounded-lg transition-all text-base">
+              ← Back
+            </button>
+            <button onclick="advanceStep()" class="flex-[2] min-h-[48px] bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-lg transition-all text-base focus:ring-4 focus:ring-accent-light">
+              Next →
+            </button>
+          </div>
+        </div>
+
+        <!-- BUMPA VIEW -->
+        <div id="form-step-bumpa" class="step-view hidden">
+          <div class="w-16 h-16 rounded-full bg-amber-50 flex items-center justify-center text-accent text-2xl mb-4">
+            <i class="fa-solid fa-store"></i>
+          </div>
+          <h2 class="text-2xl md:text-3xl font-bold text-nearBlack mb-2 font-sans">Here's the best way to get your online store.</h2>
+          <p class="text-mediumGray text-sm mb-3">We recommend Bumpa — it's built for Nigerian businesses and easy to manage.</p>
+          <p class="text-accent text-sm font-semibold mb-6">Bumpa plans start from ₦15,000 per quarter (every 3 months).</p>
+
+          <div class="space-y-4 mb-6">
+            <!-- 3 Selectable Cards for bumpa setups -->
+            <div onclick="selectBumpaOption('diy')" id="bumpa-card-diy" class="border border-gray-200 p-4 rounded-xl cursor-pointer hover:border-accent transition-all flex flex-col gap-1">
+              <span class="font-bold text-nearBlack">I'll set it up myself</span>
+              <span class="text-mediumGray text-xs">We'll point you in the right direction. (₦0. We won't charge you)</span>
+            </div>
+
+            <div onclick="selectBumpaOption('setup')" id="bumpa-card-setup" class="border border-gray-200 p-4 rounded-xl cursor-pointer hover:border-accent transition-all flex flex-col gap-1">
+              <span class="font-bold text-nearBlack">Set it up for me</span>
+              <span class="text-mediumGray text-xs">One-time setup fee: ₦30,000</span>
+            </div>
+
+            <div onclick="selectBumpaOption('manage')" id="bumpa-card-manage" class="border border-gray-200 p-4 rounded-xl cursor-pointer hover:border-accent transition-all flex flex-col gap-1">
+              <span class="font-bold text-nearBlack">Set it up and manage it for me</span>
+              <span class="text-mediumGray text-xs">Setup: ₦30,000 (one-time) + ₦50,000/month ongoing</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-400 mb-8">
+            These fees are separate from your Bumpa subscription cost.
+          </p>
+
+          <div class="mt-8 flex gap-3">
+            <button onclick="handleFormBack()" class="flex-1 min-h-[48px] border border-gray-200 hover:border-gray-300 text-mediumGray hover:text-nearBlack font-semibold py-3 px-6 rounded-lg transition-all text-base">
+              ← Back
+            </button>
+            <button onclick="submitBumpaRequest()" class="flex-[2] min-h-[48px] bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-lg transition-all text-base flex items-center justify-center gap-2">
+              <i class="fa-brands fa-whatsapp text-lg"></i> Continue to WhatsApp →
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 4 VIEW -->
+        <div id="form-step-4" class="step-view hidden">
+          <h2 class="text-2xl md:text-3xl font-bold text-nearBlack mb-2 font-sans">When would you like to get started?</h2>
+          <p class="text-mediumGray text-sm mb-6">Pick the option closest to what you have in mind.</p>
+
+          <div class="space-y-4" id="timeline-options-container">
+            <!-- Timeline options rendered programmatically -->
+          </div>
+
+          <div class="mt-8 flex gap-3">
+            <button onclick="handleFormBack()" class="flex-1 min-h-[48px] border border-gray-200 hover:border-gray-300 text-mediumGray hover:text-nearBlack font-semibold py-3 px-6 rounded-lg transition-all text-base">
+              ← Back
+            </button>
+            <button onclick="advanceStep()" class="flex-[2] min-h-[48px] bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-lg transition-all text-base focus:ring-4 focus:ring-accent-light">
+              Next →
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 5 VIEW -->
+        <div id="form-step-5" class="step-view hidden">
+          <h2 class="text-2xl md:text-3xl font-bold text-nearBlack mb-2 font-sans">Almost done.</h2>
+          <p class="text-mediumGray text-sm mb-6">Here's what you've selected. Check it over before you send.</p>
+
+          <!-- Summary Card -->
+          <div class="bg-gray-50 border border-gray-100 p-6 rounded-xl mb-6 text-sm space-y-3">
+            <div class="flex justify-between border-b border-gray-200/60 pb-2">
+              <span class="text-mediumGray">Name:</span>
+              <span class="font-bold text-nearBlack text-right" id="summary-name"></span>
+            </div>
+            <div class="flex justify-between border-b border-gray-200/60 pb-2">
+              <span class="text-mediumGray">Business:</span>
+              <span class="font-bold text-nearBlack text-right" id="summary-business"></span>
+            </div>
+            <div class="flex justify-between border-b border-gray-200/60 pb-2">
+              <span class="text-mediumGray">Budget:</span>
+              <span class="font-bold text-nearBlack text-right" id="summary-budget"></span>
+            </div>
+            <div class="flex justify-between border-b border-gray-200/60 pb-2">
+              <span class="text-mediumGray">Website type:</span>
+              <span class="font-bold text-nearBlack text-right" id="summary-type"></span>
+            </div>
+            <div class="flex justify-between pb-1">
+              <span class="text-mediumGray">Timeline:</span>
+              <span class="font-bold text-nearBlack text-right" id="summary-timeline"></span>
+            </div>
+          </div>
+
+          <!-- Live Activity Feed Title -->
+          <div class="flex items-center gap-2 mb-3 px-1">
+            <div class="w-2.5 h-2.5 rounded-full bg-liveRed live-pulse"></div>
+            <span class="text-xs font-bold text-nearBlack uppercase tracking-wider">Live Activity Stream</span>
+          </div>
+
+          <!-- Live Request Horizontal Scrolling Strip Container -->
+          <div class="mb-6 overflow-hidden relative py-4 bg-amber-50/10 border-y border-gray-100 rounded-lg">
+            <div class="flex overflow-x-auto gap-4 px-4 scrollbar-hide" style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;">
+              <!-- Cards shown side-by-side in confirmation step -->
+              <div id="confirmation-strip-content" class="flex gap-4 animate-marquee">
+                <!-- Autoscrolling live-feel request cards will be placed here -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Agreement Checkbox -->
+          <div class="mb-8">
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" id="input-agreement" class="w-5 h-5 mt-0.5 rounded border-gray-300 text-accent focus:ring-accent accent-accent">
+              <span class="text-sm text-nearBlack leading-relaxed">
+                I understand this is a paid service. A 40% deposit is required before work begins. The project will start within the timeline I selected.
+              </span>
+            </label>
+          </div>
+
+          <div class="mt-8 flex gap-3">
+            <button onclick="handleFormBack()" class="flex-1 min-h-[48px] border border-gray-200 hover:border-gray-300 text-mediumGray hover:text-nearBlack font-semibold py-3 px-6 rounded-lg transition-all text-base">
+              ← Back
+            </button>
+            <button onclick="submitFinalForm()" id="final-submit-btn" class="flex-[2] min-h-[48px] bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-lg transition-all text-base focus:ring-4 focus:ring-accent-light flex items-center justify-center gap-2">
+              Send My Request →
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================== -->
+  <!-- FLOATING SOCIAL PROOF WIDGET (FULLY-ROUNDED PILL) -->
+  <!-- ============================================== -->
+  <div id="social-proof-widget" class="fixed bottom-4 left-4 z-50 bg-white border border-gray-100 shadow-xl rounded-full px-5 py-3 flex items-center gap-3 w-auto max-w-[calc(100%-32px)] md:max-w-[340px] transition-all duration-300 transform translate-y-0">
+    <!-- Icon/Live Indicator -->
+    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center text-accent">
+      <i class="fa-solid fa-bolt text-xs live-pulse"></i>
+    </div>
+    
+    <!-- Dynamic self-wrapping text block so nothing gets clipped -->
+    <div class="flex-grow min-w-0 py-0.5">
+      <div id="ticker-live-content" class="text-xs text-nearBlack leading-snug transition-opacity duration-300 opacity-100">
+        <!-- Text slots will cycle cleanly here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- PLAN COMPARISON FULL-SCREEN MODAL -->
+  <div id="plans-modal" class="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-nearWhite rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl border border-gray-100">
+      
+      <!-- Modal Header -->
+      <div class="p-6 bg-white border-b border-gray-100 flex items-center justify-between">
+        <div>
+          <h3 class="font-heading text-2xl md:text-3xl font-semibold text-nearBlack">Choose the Best Plan for Your Growth</h3>
+          <p class="text-xs text-mediumGray mt-1">Simple transparent setups. Pick what suits your current scale.</p>
+        </div>
+        <button onclick="closePlansModal()" class="w-10 h-10 rounded-full bg-gray-50 hover:bg-gray-100 flex items-center justify-center text-mediumGray hover:text-nearBlack focus:outline-none transition-all">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Scrollable Cards Container -->
+      <div class="p-6 overflow-y-auto flex-grow space-y-6 md:space-y-0 md:grid md:grid-cols-3 md:gap-6 bg-gray-50/50">
+        
+        <!-- CARD 1: BASIC -->
+        <div class="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-between shadow-sm relative overflow-hidden">
+          <div>
+            <span class="text-[10px] font-bold tracking-wider text-amber-600 bg-amber-50 uppercase px-2.5 py-1 rounded-full">Starter Tier</span>
+            <h4 class="font-bold text-xl text-nearBlack mt-3">Basic Plan</h4>
+            <p class="text-xs text-mediumGray mt-1">Perfect for new businesses looking to get online quickly.</p>
+            <div class="my-4 pb-4 border-b border-gray-100">
+              <span class="text-2xl font-bold text-nearBlack">From ₦50,000</span>
+            </div>
+            
+            <ul class="space-y-2.5 text-xs text-mediumGray">
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">✓</span> 1 to 5 Fully Custom Pages
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">✓</span> Mobile-Responsive Design
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">✓</span> Reliable Contact Form
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">✓</span> .com or .com.ng Domain
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">✓</span> Extremely Fast Page Load
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CARD 2: STANDARD (POPULAR) -->
+        <div class="bg-white border-2 border-accent rounded-xl p-6 flex flex-col justify-between shadow-md relative overflow-hidden">
+          <div class="absolute -right-12 -top-1 px-12 py-1.5 bg-accent text-white text-[10px] font-bold uppercase tracking-widest rotate-45">
+            Popular
+          </div>
+          <div>
+            <span class="text-[10px] font-bold tracking-wider text-accent bg-amber-100 uppercase px-2.5 py-1 rounded-full">Growth Tier</span>
+            <h4 class="font-bold text-xl text-nearBlack mt-3">Standard Plan</h4>
+            <p class="text-xs text-mediumGray mt-1">Best value for expanding businesses needing rich content.</p>
+            <div class="my-4 pb-4 border-b border-gray-100">
+              <span class="text-2xl font-bold text-nearBlack">From ₦100,000</span>
+            </div>
+            
+            <ul class="space-y-2.5 text-xs text-mediumGray">
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">✓</span> 10+ Complete Pages
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">✓</span> Searchable Listings & Catalogues
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">✓</span> Built-in Blog & Article System
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">✓</span> Google Search Optimization (SEO)
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">✓</span> Professional Custom Enquiries Setup
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CARD 3: ADVANCED -->
+        <div class="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-between shadow-sm relative overflow-hidden">
+          <div>
+            <span class="text-[10px] font-bold tracking-wider text-purple-700 bg-purple-50 uppercase px-2.5 py-1 rounded-full">Enterprise Tier</span>
+            <h4 class="font-bold text-xl text-nearBlack mt-3">Advanced Plan</h4>
+            <p class="text-xs text-mediumGray mt-1">Custom-built web platforms, apps, and automated databases.</p>
+            <div class="my-4 pb-4 border-b border-gray-100">
+              <span class="text-2xl font-bold text-nearBlack">From ₦2,000,000</span>
+            </div>
+            
+            <ul class="space-y-2.5 text-xs text-mediumGray">
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">✓</span> Infinite Pages & Scalability
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">✓</span> Custom Databases & Admin Tools
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">✓</span> User Accounts, Sign-in & Dashboard
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">✓</span> Paystack & Flutterwave Checkout
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent font-bold">✓</span> AI Integrations & API Connections
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-6 bg-white border-t border-gray-100 flex justify-end">
+        <button onclick="closePlansModal()" class="bg-nearBlack hover:bg-nearBlack/90 text-white font-medium px-6 py-2.5 rounded-xl transition-all">
+          Close Comparison
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-gray-100 py-12 px-6 text-center text-xs text-mediumGray">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <p>© 2026 adekani. All rights reserved. Professional websites for Nigerian entrepreneurs.</p>
+    <div class="flex gap-4">
+      <a href="#home" class="hover:underline">Home</a>
+      <a href="#form" class="hover:underline">Request Website</a>
+    </div>
+  </div>
+  <!-- Disclaimer sits below the flex row, full width, centered -->
+  <p class="mt-4 text-gray-400 text-[11px] max-w-xl mx-auto leading-relaxed">
+    This site is not a part of Facebook or Meta Platforms, Inc. Additionally, this site is not endorsed by Facebook in any way. FACEBOOK is a trademark of Meta Platforms, Inc.
+  </p>
+  </footer>
+
+  <!-- ============================================== -->
+  <!-- JAVASCRIPT SYSTEM                             -->
+  <!-- ============================================== -->
+  <script>
+    // --- SUPABASE CONFIG ---
+    const dbConfig = {
+      url: "https://xsdudtnszfszlvjpqrij.supabase.co",
+      key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzZHVkdG5zemZzemx2anBxcmlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1NjkwOTIsImV4cCI6MjA4NzE0NTA5Mn0.v51jTNwUGBMzX4PlAdBMNSj25XBVirLhiqStKSsFBuw"
+    };
+
+    // --- FORM STATE & CONSTANTS ---
+    const STATE_KEY = "adekani_form_state";
+    let formState = {
+      step: 1,
+      full_name: "",
+      business_name: "",
+      business_description: "",
+      budget_range: "",
+      website_type: "",
+      ecommerce_choice: "",
+      timeline: "",
+      agreed_to_terms: false
+    };
+
+    // Budget Options Mapping
+    const BUDGET_OPTIONS = [
+      { id: 'under_50k', display: 'Under ₦50,000', badge: 'Micro' },
+      { id: '50k-100k', display: '₦50,000 – ₦100,000', badge: 'Starter' },
+      { id: '100k-450k', display: '₦100,000 – ₦450,000', badge: 'Standard' },
+      { id: '500k-2m', display: '₦500,000 – ₦2,000,000', badge: 'Professional' },
+      { id: '2m-20m', display: '₦2,000,000 – ₦20,000,000', badge: 'Enterprise' }
+    ];
+
+    // Website Types Mapping with details & what's included
+    const WEBSITE_TYPES = {
+      basic: {
+        title: "Basic (1–5 pages)",
+        desc: "A clean, professional site with your key pages. Great for getting online fast.",
+        price: "From ₦50,000",
+        included: [
+          "Up to 5 pages (e.g. Home, About, Services, Gallery, Contact)",
+          "Mobile-friendly design",
+          "Contact form so customers can reach you",
+          "Your own domain name (.com or .com.ng)",
+          "Fast loading on Nigerian networks"
+        ],
+        budgetTier: "50k-100k"
+      },
+      basic_plus: {
+        title: "Basic+ (6–10 pages)",
+        desc: "A bit more room for everything your business needs to say.",
+        price: "From ₦50,000 – ₦100,000",
+        included: [
+          "Up to 10 pages of content",
+          "Mobile-friendly design",
+          "Contact form and enquiry handling",
+          "Your own domain name",
+          "Basic photo gallery or portfolio section",
+          "Fast loading on Nigerian networks"
+        ],
+        budgetTier: "50k-100k"
+      },
+      standard: {
+        title: "Standard (10+ pages)",
+        desc: "A full website with room for everything your business needs.",
+        price: "From ₦100,000",
+        included: [
+          "10 or more pages — enough for a full business presence",
+          "Mobile-friendly design",
+          "Contact and enquiry forms",
+          "Photo gallery or portfolio",
+          "Your own domain name",
+          "Optimised to be found on Google"
+        ],
+        budgetTier: "100k-450k"
+      },
+      listing: {
+        title: "Listings Website",
+        desc: "Show your cars, properties, or products with a searchable catalog.",
+        price: "From ₦200,000",
+        included: [
+          "A searchable catalog of your products, properties, or vehicles",
+          "Each item gets its own detail page",
+          "Filter and sort tools for your visitors",
+          "A simple dashboard so you can add or update listings yourself",
+          "Mobile-friendly and fast"
+        ],
+        budgetTier: "100k-450k"
+      },
+      blog_news: {
+        title: "Blog / News Website",
+        desc: "Publish articles and updates. Build an audience over time.",
+        price: "From ₦100,000",
+        included: [
+          "Unlimited posts and articles",
+          "Categories and tags to keep content organised",
+          "A simple editor — no coding needed to publish",
+          "Social sharing built in",
+          "Optimised so your articles show up on Google"
+        ],
+        budgetTier: "100k-450k"
+      },
+      standard_plus: {
+        title: "Standard+ (16+ pages)",
+        desc: "For businesses with a lot to say and show.",
+        price: "From ₦500,000",
+        included: [
+          "16 or more pages — ideal for large catalogues or multi-service businesses",
+          "Mobile-friendly design",
+          "Multiple contact and enquiry forms",
+          "Photo galleries and media sections",
+          "Your own domain name",
+          "Set up to rank well on Google"
+        ],
+        budgetTier: "500k-2m"
+      },
+      advanced: {
+        title: "Advanced Website",
+        desc: "Custom systems, user accounts, payments, databases. Built for serious scale.",
+        price: "From ₦2,000,000",
+        included: [
+          "Fully custom-built to your exact requirements",
+          "User accounts and login systems",
+          "Payment integration (Paystack, Flutterwave)",
+          "Database and admin dashboard",
+          "AI or automation features where needed",
+          "Ongoing technical support available"
+        ],
+        budgetTier: "2m-20m"
+      }
+    };
+
+    // Social Ticker Static Source (Simplified language for ultimate clarity)
+    let tickerEntries = [
+      { name: "Louis", type: "Standard Website", price: "₦200k", timestamp: null, fallbackTime: "Just now" },
+      { name: "Adeniyi", type: "Basic Website", price: "₦50k", timestamp: null, fallbackTime: "1 min ago" },
+      { name: "Segun", type: "Standard Website", price: "₦300k", timestamp: null, fallbackTime: "3 mins ago" },
+      { name: "Chiamaka", type: "Listing Website", price: "₦150k", timestamp: null, fallbackTime: "5 mins ago" },
+      { name: "Folarin", type: "Listing Website", price: "₦200k", timestamp: null, fallbackTime: "7 mins ago" },
+      { name: "Jeremiah", type: "Standard Website", price: "₦70k", timestamp: null, fallbackTime: "9 mins ago" },
+      { name: "Lillian", type: "Advanced Website", price: "₦2m", timestamp: null, fallbackTime: "11 mins ago" },
+      { name: "Tochukwu", type: "Advanced Website", price: "₦750k", timestamp: null, fallbackTime: "14 mins ago" },
+      { name: "Temi", type: "Basic Website", price: "₦50k", timestamp: null, fallbackTime: "18 mins ago" },
+      { name: "Mercy", type: "Basic Website", price: "₦50k", timestamp: null, fallbackTime: "22 mins ago" },
+      { name: "Gift", type: "Basic Website", price: "₦50k", timestamp: null, fallbackTime: "25 mins ago" }
+    ];
+
+    let currentTickerIndex = 0;
+    let tickerInterval = null;
+
+    // --- APPLICATION BOOTSTRAP ---
+    window.addEventListener('load', () => {
+      // Setup Scroll Reveal effect for landing
+      const sections = document.querySelectorAll('.fade-in-section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      sections.forEach(s => observer.observe(s));
+
+      // Restore form state
+      restoreState();
+
+      // Setup Social Widget
+      buildTicker();
+      fetchLeadsForWidget();
+
+      // Route setup
+      routeHandler();
+      window.addEventListener('hashchange', routeHandler);
+    });
+
+    // --- HASH ROUTER ---
+    function routeHandler() {
+      let hash = window.location.hash || '#home';
+      
+      if (hash !== '#home' && hash !== '#form') {
+        hash = '#home';
+      }
+
+      document.getElementById('view-home').classList.add('hidden');
+      document.getElementById('view-form').classList.add('hidden');
+
+      const isSubmissionStep = (hash === '#form' && formState.step === 5);
+      const widget = document.getElementById('social-proof-widget');
+
+      if (hash === '#home') {
+        document.getElementById('view-home').classList.remove('hidden');
+        widget.classList.remove('hidden');
+        checkResumeStatePrompt();
+      } else if (hash === '#form') {
+        document.getElementById('view-form').classList.remove('hidden');
+        if (isSubmissionStep) {
+          widget.classList.add('hidden');
+        } else {
+          widget.classList.remove('hidden');
+        }
+        renderFormStep();
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // --- LOCAL STORAGE PERSISTENCE ---
+    function restoreState() {
+      const saved = localStorage.getItem(STATE_KEY);
+      if (saved) {
+        try {
+          formState = JSON.parse(saved);
+        } catch (e) {
+          console.error("Failed to parse saved state", e);
+        }
+      }
+    }
+
+    function saveState() {
+      localStorage.setItem(STATE_KEY, JSON.stringify(formState));
+      checkResumeStatePrompt();
+    }
+
+    function checkResumeStatePrompt() {
+      const saved = localStorage.getItem(STATE_KEY);
+      const container = document.getElementById('resume-container');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.full_name || parsed.business_name || parsed.step > 1) {
+          container.classList.remove('hidden');
+          return;
+        }
+      }
+      container.classList.add('hidden');
+    }
+
+    function clearAndStartOver() {
+      localStorage.removeItem(STATE_KEY);
+      formState = {
+        step: 1,
+        full_name: "",
+        business_name: "",
+        business_description: "",
+        budget_range: "",
+        website_type: "",
+        ecommerce_choice: "",
+        timeline: "",
+        agreed_to_terms: false
+      };
+      saveState();
+      window.location.hash = '#form';
+      renderFormStep();
+    }
+
+    // --- FORM FIELD HANDLERS ---
+    function saveCurrentField(field, value) {
+      formState[field] = value;
+      saveState();
+    }
+
+    function handleBusinessDescInput(elem) {
+      let val = elem.value;
+      if (val.length > 200) {
+        val = val.substring(0, 200);
+        elem.value = val;
+      }
+      formState.business_description = val;
+      document.getElementById('desc-char-counter').textContent = `${val.length} / 200`;
+      saveState();
+    }
+
+    // --- FORM STEP CONTROLLER ---
+    function renderFormStep() {
+      document.querySelectorAll('.step-view').forEach(view => view.classList.add('hidden'));
+      hideError();
+
+      const currentStep = formState.step;
+      const stepBadge = document.getElementById('form-step-badge');
+      const progressBar = document.getElementById('form-progress-bar');
+      
+      stepBadge.textContent = `Step ${currentStep} of 5`;
+      progressBar.style.width = `${(currentStep / 5) * 100}%`;
+
+      const widget = document.getElementById('social-proof-widget');
+      if (currentStep === 5) {
+        widget.classList.add('hidden');
+      } else {
+        widget.classList.remove('hidden');
+      }
+
+      switch (currentStep) {
+        case 1:
+          document.getElementById('form-step-1').classList.remove('hidden');
+          document.getElementById('input-full-name').value = formState.full_name;
+          document.getElementById('input-business-name').value = formState.business_name;
+          document.getElementById('input-business-desc').value = formState.business_description;
+          document.getElementById('desc-char-counter').textContent = `${formState.business_description.length} / 200`;
+          break;
+
+        case 2:
+          document.getElementById('form-step-2').classList.remove('hidden');
+          renderBudgetOptions();
+          break;
+
+        case 3:
+          if (formState.budget_range === 'under_50k') {
+            document.getElementById('form-step-dead-confirm').classList.remove('hidden');
+          } else {
+            document.getElementById('form-step-3').classList.remove('hidden');
+            renderWebsiteTypeOptions();
+          }
+          break;
+
+        case 4:
+          if (formState.website_type === 'ecommerce') {
+            document.getElementById('form-step-bumpa').classList.remove('hidden');
+            renderBumpaSelection();
+          } else {
+            document.getElementById('form-step-4').classList.remove('hidden');
+            renderTimelineOptions();
+          }
+          break;
+
+        case 5:
+          document.getElementById('form-step-5').classList.remove('hidden');
+          renderSummary();
+          break;
+
+        default:
+          formState.step = 1;
+          saveState();
+          renderFormStep();
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function handleFormBack() {
+      hideError();
+      if (formState.step > 1) {
+        formState.step -= 1;
+        saveState();
+        renderFormStep();
+      } else {
+        window.location.hash = '#home';
+      }
+    }
+
+    function advanceStep() {
+      hideError();
+      const step = formState.step;
+
+      if (step === 1) {
+        if (!formState.full_name.trim()) {
+          showError("Please enter your full name to proceed.");
+          return;
+        }
+        if (!formState.business_name.trim()) {
+          showError("Please enter your registered or trading business name.");
+          return;
+        }
+        if (!formState.business_description.trim()) {
+          showError("Please tell us in a short sentence what your business does.");
+          return;
+        }
+        formState.step = 2;
+        saveState();
+        renderFormStep();
+      } 
+      else if (step === 2) {
+        if (!formState.budget_range) {
+          showError("Please select a budget range closest to your budget.");
+          return;
+        }
+        if (formState.budget_range === 'under_50k') {
+          document.querySelectorAll('.step-view').forEach(view => view.classList.add('hidden'));
+          document.getElementById('form-step-dead-confirm').classList.remove('hidden');
+        } else {
+          formState.step = 3;
+          saveState();
+          renderFormStep();
+        }
+      } 
+      else if (step === 3) {
+        if (!formState.website_type) {
+          showError("Please select an option that fits your needs.");
+          return;
+        }
+        
+        const budget = formState.budget_range;
+        const selectedKey = formState.website_type;
+        let isAllowed = false;
+
+        if (selectedKey === 'ecommerce') {
+          isAllowed = true;
+        } else {
+          const typeTier = WEBSITE_TYPES[selectedKey]?.budgetTier;
+          if (budget === '50k-100k' && (selectedKey === 'basic' || selectedKey === 'basic_plus')) isAllowed = true;
+          if (budget === '100k-450k' && (selectedKey === 'standard' || selectedKey === 'listing' || selectedKey === 'blog_news')) isAllowed = true;
+          if (budget === '500k-2m' && (selectedKey === 'standard_plus' || selectedKey === 'listing')) isAllowed = true;
+          if (budget === '2m-20m' && selectedKey === 'advanced') isAllowed = true;
+        }
+
+        if (!isAllowed) {
+          showError("This option is currently unavailable for your selected budget range.");
+          return;
+        }
+
+        if (selectedKey === 'ecommerce') {
+          document.querySelectorAll('.step-view').forEach(view => view.classList.add('hidden'));
+          document.getElementById('form-step-bumpa').classList.remove('hidden');
+          renderBumpaSelection();
+        } else {
+          if (typeof fbq !== 'undefined') {
+            fbq('track', 'ViewContent', { content_name: selectedKey, content_category: budget });
+          }
+          formState.step = 4;
+          saveState();
+          renderFormStep();
+        }
+      } 
+      else if (step === 4) {
+        if (!formState.timeline) {
+          showError("Please let us know your preferred timeline to proceed.");
+          return;
+        }
+        formState.step = 5;
+        saveState();
+        renderFormStep();
+      }
+    }
+
+    // --- BUDGET STEP RENDER ---
+    function renderBudgetOptions() {
+      const container = document.getElementById('budget-options-container');
+      container.innerHTML = '';
+
+      BUDGET_OPTIONS.forEach(opt => {
+        const isSelected = formState.budget_range === opt.id;
+        const card = document.createElement('div');
+        card.className = `border rounded-xl p-5 cursor-pointer flex items-center justify-between transition-all min-h-[48px] ${
+          isSelected 
+            ? 'border-accent bg-accent-light/40 ring-2 ring-accent/20 shadow-sm' 
+            : 'border-gray-200 hover:border-gray-300 bg-white shadow-sm'
+        }`;
+        card.onclick = () => {
+          formState.budget_range = opt.id;
+          saveState();
+          renderBudgetOptions();
+        };
+
+        card.innerHTML = `
+          <div class="flex items-center gap-3">
+            <div class="w-5 h-5 rounded-full border flex items-center justify-center ${
+              isSelected ? 'border-accent bg-accent text-white' : 'border-gray-300 bg-white'
+            }">
+              ${isSelected ? '<i class="fa-solid fa-circle text-[8px]"></i>' : ''}
+            </div>
+            <span class="font-bold text-nearBlack text-base">${opt.display}</span>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-md ${
+            isSelected ? 'bg-accent/20 text-accent-dark' : 'bg-gray-100 text-mediumGray'
+          }">${opt.badge}</span>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // --- DEAD END FLOW CONTROLS ---
+    function returnToBudgetStep() {
+      formState.step = 2;
+      saveState();
+      renderFormStep();
+    }
+
+    // Dead end submission to Supabase
+    function submitDeadEnd() {
+      document.querySelectorAll('.step-view').forEach(view => view.classList.add('hidden'));
+      document.getElementById('form-step-dead-message').classList.remove('hidden');
+      
+      saveToDb({
+        full_name: formState.full_name,
+        business_name: formState.business_name,
+        business_description: formState.business_description,
+        budget_range: "under_50k",
+        website_type: "none_budget_low",
+        is_lead: "NO",
+        pixel_fired: false
+      });
+    }
+
+    // --- WEBSITE TYPE OPTIONS RENDER (GREY OUT SYSTEM & SORTING) ---
+    function renderWebsiteTypeOptions() {
+      const container = document.getElementById('website-type-container');
+      container.innerHTML = '';
+
+      const budget = formState.budget_range;
+
+      const isAllowed = (key) => {
+        if (budget === '50k-100k' && (key === 'basic' || key === 'basic_plus')) return true;
+        if (budget === '100k-450k' && (key === 'standard' || key === 'listing' || key === 'blog_news')) return true;
+        if (budget === '500k-2m' && (key === 'standard_plus' || key === 'listing')) return true;
+        if (budget === '2m-20m' && key === 'advanced') return true;
+        return false;
+      };
+
+      const keys = Object.keys(WEBSITE_TYPES);
+      
+      let availableOptions = [];
+      let unavailableOptions = [];
+
+      keys.forEach(key => {
+        if (isAllowed(key)) {
+          availableOptions.push({ key, isEcommerce: false });
+        } else {
+          unavailableOptions.push({ key, isEcommerce: false });
+        }
+      });
+
+      const hasBudgetSelected = (budget && budget !== 'under_50k');
+      if (hasBudgetSelected) {
+        availableOptions.push({ key: 'ecommerce', isEcommerce: true });
+      } else {
+        unavailableOptions.push({ key: 'ecommerce', isEcommerce: true });
+      }
+
+      const sortedKeys = [...availableOptions, ...unavailableOptions];
+
+      sortedKeys.forEach(({ key, isEcommerce }) => {
+        const isOptAvailable = isEcommerce ? hasBudgetSelected : isAllowed(key);
+        const isSelected = formState.website_type === key;
+
+        const card = document.createElement('div');
+        card.id = `type-card-${key}`;
+
+        if (isOptAvailable) {
+          card.className = `border rounded-xl p-5 cursor-pointer transition-all flex flex-col gap-2 relative shadow-sm ${
+            isSelected 
+              ? 'card-selected border-accent bg-accent-light/40 ring-2 ring-accent/20' 
+              : 'border-gray-200 hover:border-gray-300 bg-white'
+          }`;
+
+          card.onclick = () => {
+            formState.website_type = key;
+            saveState();
+            renderWebsiteTypeOptions();
+          };
+
+          if (isEcommerce) {
+            card.innerHTML = `
+              <div class="flex items-start justify-between">
+                <div class="flex items-start gap-3">
+                  <div class="w-5 h-5 mt-1 rounded-full border flex items-center justify-center ${
+                    isSelected ? 'border-accent bg-accent text-white' : 'border-gray-300 bg-white'
+                  }">
+                    ${isSelected ? '<i class="fa-solid fa-circle text-[8px]"></i>' : ''}
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-nearBlack text-base">Online Store</h4>
+                    <p class="text-mediumGray text-xs mt-1 leading-relaxed">Sell your products online. Manage orders from your phone.</p>
+                  </div>
+                </div>
+                <span class="text-xs font-semibold text-accent whitespace-nowrap bg-amber-50 px-2 py-1 rounded">From ₦15,000/qtr</span>
+              </div>
+            `;
+          } else {
+            const item = WEBSITE_TYPES[key];
+            const featuresHtml = item.included.map(f => `<li class="flex items-start gap-2 text-xs text-mediumGray"><span class="text-accent font-bold">✓</span> <span>${f}</span></li>`).join('');
+
+            card.innerHTML = `
+              <div class="flex items-start justify-between">
+                <div class="flex items-start gap-3">
+                  <div class="w-5 h-5 mt-1 rounded-full border flex items-center justify-center ${
+                    isSelected ? 'border-accent bg-accent text-white' : 'border-gray-300 bg-white'
+                  }">
+                    ${isSelected ? '<i class="fa-solid fa-circle text-[8px]"></i>' : ''}
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-nearBlack text-base">${item.title}</h4>
+                    <p class="text-mediumGray text-xs mt-1 leading-relaxed">${item.desc}</p>
+                  </div>
+                </div>
+                <span class="text-xs font-semibold text-accent whitespace-nowrap bg-amber-50 px-2 py-1 rounded">${item.price}</span>
+              </div>
+              <div class="expandable-card-content border-t border-gray-100/80 mt-2 pt-2">
+                <span class="text-[11px] font-bold text-nearBlack uppercase tracking-wide block mb-2">What is included:</span>
+                <ul class="space-y-1.5">${featuresHtml}</ul>
+              </div>
+            `;
+          }
+
+        } else {
+          card.className = "border border-gray-100 bg-gray-50 p-5 rounded-xl flex flex-col gap-2 relative cursor-default opacity-85 select-none";
+          
+          if (isEcommerce) {
+            card.innerHTML = `
+              <div class="absolute top-3 right-3 text-[10px] bg-gray-200 text-gray-500 px-2.5 py-0.5 rounded-full font-medium shadow-sm">
+                Not available at your budget
+              </div>
+              <div class="flex items-start gap-3 mt-2 pr-28">
+                <div class="w-5 h-5 mt-1 rounded-full border border-gray-200 bg-gray-100"></div>
+                <div>
+                  <h4 class="font-bold text-gray-400 text-base">Online Store (via Bumpa)</h4>
+                  <p class="text-gray-400 text-xs mt-1 leading-relaxed">Sell your products online. Manage orders from your phone.</p>
+                </div>
+              </div>
+            `;
+          } else {
+            const item = WEBSITE_TYPES[key];
+            card.innerHTML = `
+              <div class="absolute top-3 right-3 text-[10px] bg-gray-200 text-gray-500 px-2.5 py-0.5 rounded-full font-medium shadow-sm">
+                Not available at your budget
+              </div>
+              <div class="flex items-start gap-3 mt-2 pr-28">
+                <div class="w-5 h-5 mt-1 rounded-full border border-gray-200 bg-gray-100"></div>
+                <div>
+                  <h4 class="font-bold text-gray-400 text-base">${item.title}</h4>
+                  <p class="text-gray-400 text-xs mt-1 leading-relaxed">${item.desc}</p>
+                </div>
+              </div>
+            `;
+          }
+        }
+
+        container.appendChild(card);
+      });
+    }
+
+    // --- BUMPA FLOW SELECTOR ---
+    function selectBumpaOption(val) {
+      formState.ecommerce_choice = val;
+      saveState();
+      renderBumpaSelection();
+    }
+
+    function renderBumpaSelection() {
+      const cards = ['diy', 'setup', 'manage'];
+      cards.forEach(c => {
+        const card = document.getElementById(`bumpa-card-${c}`);
+        if (formState.ecommerce_choice === c) {
+          card.className = 'border-2 border-accent bg-accent-light/40 p-4 rounded-xl cursor-pointer transition-all flex flex-col gap-1 shadow-sm';
+        } else {
+          card.className = 'border border-gray-200 hover:border-gray-300 p-4 rounded-xl cursor-pointer transition-all flex flex-col gap-1 bg-white shadow-sm';
+        }
+      });
+    }
+
+    function submitBumpaRequest() {
+      if (!formState.ecommerce_choice) {
+        showError("Please choose one of the options below to proceed.");
+        return;
+      }
+
+      const dataToSave = {
+        full_name: formState.full_name,
+        business_name: formState.business_name,
+        business_description: formState.business_description,
+        budget_range: formState.budget_range,
+        website_type: "ecommerce",
+        ecommerce_choice: formState.ecommerce_choice,
+        agreed_to_terms: false,
+        is_lead: "NO",
+        pixel_fired: false
+      };
+
+      saveToDb(dataToSave);
+
+      const choiceMapping = {
+        diy: "I will set it up myself",
+        setup: "Please set it up for me (₦30,000)",
+        manage: "Please set it up and manage it for me (₦30,000 + ₦15,000/month)"
+      };
+
+      const readableBudget = BUDGET_OPTIONS.find(o => o.id === formState.budget_range)?.display || formState.budget_range;
+
+      const template = `Hi Adekani, I'm interested in setting up an online store.
+
+Here's what I'm looking for:
+- Name: ${formState.full_name}
+- Business: ${formState.business_name}
+- What we do: ${formState.business_description}
+- Budget: ${readableBudget}
+- Preferred option: ${choiceMapping[formState.ecommerce_choice] || formState.ecommerce_choice}
+
+Looking forward to hearing from you.`;
+
+      const encodedMessage = encodeURIComponent(template);
+      const url = `https://wa.me/2347015281093?text=${encodedMessage}`;
+
+      localStorage.removeItem(STATE_KEY);
+      window.location.href = url;
+    }
+
+    // --- TIMELINE FLOW SELECTOR ---
+    function renderTimelineOptions() {
+      const container = document.getElementById('timeline-options-container');
+      container.innerHTML = '';
+
+      let options = [];
+      const isAdvanced = formState.website_type === 'advanced';
+
+      if (isAdvanced) {
+        options = [
+          { id: 'asap', text: 'I want to start scoping now' },
+          { id: '1_month', text: 'Within the next month' },
+          { id: '3_months', text: 'Within 1 to 3 months' },
+          { id: 'exploring', text: "I'm still exploring options" }
+        ];
+      } else {
+        options = [
+          { id: 'asap', text: 'Right now — as soon as possible' },
+          { id: '2_weeks', text: 'Within the next 2 weeks' },
+          { id: '1_month', text: 'Within the next month' },
+          { id: '3_months', text: 'Within 1 to 3 months' },
+          { id: 'exploring', text: "I'm still exploring options" }
+        ];
+      }
+
+      options.forEach(opt => {
+        const isSelected = formState.timeline === opt.id;
+        const card = document.createElement('div');
+        card.className = `border rounded-xl p-5 cursor-pointer flex items-center gap-3 transition-all min-h-[48px] ${
+          isSelected 
+            ? 'border-accent bg-accent-light/40 ring-2 ring-accent/20' 
+            : 'border-gray-200 hover:border-gray-300 bg-white shadow-sm'
+        }`;
+        card.onclick = () => {
+          formState.timeline = opt.id;
+          saveState();
+          renderTimelineOptions();
+        };
+
+        card.innerHTML = `
+          <div class="w-5 h-5 rounded-full border flex items-center justify-center ${
+            isSelected ? 'border-accent bg-accent text-white' : 'border-gray-300 bg-white'
+          }">
+            ${isSelected ? '<i class="fa-solid fa-circle text-[8px]"></i>' : ''}
+          </div>
+          <span class="font-semibold text-nearBlack text-base">${opt.text}</span>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // --- SUMMARY & SUBMISSION VIEW ---
+    function renderSummary() {
+      document.getElementById('summary-name').textContent = formState.full_name;
+      document.getElementById('summary-business').textContent = formState.business_name;
+      
+      const bOption = BUDGET_OPTIONS.find(o => o.id === formState.budget_range);
+      document.getElementById('summary-budget').textContent = bOption ? bOption.display : formState.budget_range;
+
+      const tOption = WEBSITE_TYPES[formState.website_type];
+      document.getElementById('summary-type').textContent = tOption ? tOption.title : formState.website_type;
+
+      const timelineMapping = {
+        asap: formState.website_type === 'advanced' ? "Start scoping now" : "Right now (ASAP)",
+        "2_weeks": "Within the next 2 weeks",
+        "1_month": "Within the next month",
+        "3_months": "Within 1 to 3 months",
+        exploring: "Still exploring options"
+      };
+      document.getElementById('summary-timeline').textContent = timelineMapping[formState.timeline] || formState.timeline;
+
+      const submitBtn = document.getElementById('final-submit-btn');
+      if (formState.timeline === 'asap') {
+        submitBtn.textContent = 'Get Started Now →';
+      } else {
+        submitBtn.textContent = 'Send My Request →';
+      }
+
+      // Populate scrolling live request strip
+      const stripContent = document.getElementById('confirmation-strip-content');
+      stripContent.innerHTML = '';
+      
+      const uniqueSubmissions = tickerEntries.slice(0, 5); 
+      const duplicatedList = [...uniqueSubmissions, ...uniqueSubmissions, ...uniqueSubmissions];
+
+      duplicatedList.forEach(entry => {
+        const itemCard = document.createElement('div');
+        itemCard.className = "flex-shrink-0 bg-white border border-gray-200 p-3.5 rounded-xl flex items-center gap-3 w-[260px] shadow-sm relative";
+        
+        const displayTimeText = calculateRelativeTime(entry.timestamp, entry.fallbackTime);
+
+        // Simple language layout: "Name requested for a Website Type · Price"
+        itemCard.innerHTML = `
+          <div class="w-7 h-7 rounded-full bg-red-50 flex items-center justify-center text-red-500 text-[10px]">
+            <i class="fa-solid fa-bell live-pulse"></i>
+          </div>
+          <div class="flex flex-col min-w-0">
+            <div class="flex items-center gap-1.5">
+              <span class="text-[9px] font-bold text-liveRed uppercase tracking-wider bg-red-50 px-1.5 py-0.5 rounded flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-liveRed inline-block"></span> Live Request
+              </span>
+              <span class="text-[9px] text-gray-400 font-semibold">${displayTimeText}</span>
+            </div>
+            <span class="text-xs font-semibold text-nearBlack mt-1 leading-tight truncate">
+              <b class="text-accent font-bold">${entry.name}</b> requested for a
+            </span>
+            <span class="text-[11px] font-bold text-mediumGray mt-0.5">${entry.type} · ${entry.price}</span>
+          </div>
+        `;
+        stripContent.appendChild(itemCard);
+      });
+    }
+
+    function submitFinalForm() {
+      hideError();
+      const agreed = document.getElementById('input-agreement').checked;
+      if (!agreed) {
+        showError("Please tick the box above before you continue.");
+        return;
+      }
+
+      formState.agreed_to_terms = true;
+      const isLead = formState.timeline === "asap" ? "YES" : "NO";
+      const firePixel = formState.timeline === "asap";
+
+      const submissionData = {
+        full_name: formState.full_name,
+        business_name: formState.business_name,
+        business_description: formState.business_description,
+        budget_range: formState.budget_range,
+        website_type: formState.website_type,
+        timeline: formState.timeline,
+        agreed_to_terms: true,
+        is_lead: isLead,
+        pixel_fired: firePixel
+      };
+
+      saveToDb(submissionData);
+
+      if (firePixel) {
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'Lead');
+        }
+      }
+
+      localStorage.removeItem(STATE_KEY);
+
+      const readableBudget = BUDGET_OPTIONS.find(o => o.id === formState.budget_range)?.display || formState.budget_range;
+      const typeDisplay = WEBSITE_TYPES[formState.website_type]?.title || formState.website_type;
+
+      const timelineDisplay = {
+        "2_weeks": "within the next 2 weeks",
+        "1_month": "within the next month",
+        "3_months": "within 1 to 3 months",
+        exploring: "I am still exploring my options"
+      };
+
+      let messageTemplate = "";
+
+      if (formState.timeline === 'asap') {
+        messageTemplate = `Hi Adekani, 
+This is ${formState.full_name}
+I'm interested in getting my website started as soon as possible.
+
+Here's what I'm looking for:
+- Business: ${formState.business_name}
+- What we do: ${formState.business_description}
+- Budget: ${readableBudget}
+- Website type: ${typeDisplay}
+
+Looking forward to hearing from you!`;
+      } 
+      else if (formState.timeline === 'exploring') {
+        messageTemplate = `Hi Adekani, I'm currently exploring my options for a website.
+
+Here's where I'm at:
+- Name: ${formState.full_name}
+- Business: ${formState.business_name}
+- What we do: ${formState.business_description}
+- Budget: ${readableBudget}
+- Website type: ${typeDisplay}
+
+No rush — just wanted to reach out.`;
+      } 
+      else {
+        messageTemplate = `Hi Adekani,
+This is ${formState.full_name}
+I'm interested in getting a website.
+
+Here's what I'm looking for:
+- Business: ${formState.business_name}
+- What we do: ${formState.business_description}
+- Budget: ${readableBudget}
+- Website type: ${typeDisplay}
+- When I'd like to start: ${timelineDisplay[formState.timeline] || formState.timeline}
+
+Looking forward to connecting.`;
+      }
+
+      const encodedMessage = encodeURIComponent(messageTemplate);
+      const url = `https://wa.me/2347015281093?text=${encodedMessage}`;
+
+      window.location.href = url;
+    }
+
+    // --- SUPABASE FETCH & SAVE ---
+    async function saveToDb(payload) {
+      try {
+        const response = await fetch(`${dbConfig.url}/rest/v1/website_leads`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': dbConfig.key,
+            'Authorization': `Bearer ${dbConfig.key}`,
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error(`DB Server returned error code: ${response.status}`);
+        }
+      } catch (err) {
+        console.error("Supabase Submission Error:", err);
+      }
+    }
+
+    async function fetchLeadsForWidget() {
+      try {
+        // Fetch real-time YES leads from database sorted by created_at desc (newest first)
+        const response = await fetch(`${dbConfig.url}/rest/v1/website_leads?is_lead=eq.YES&order=created_at.desc`, {
+          method: 'GET',
+          headers: {
+            'apikey': dbConfig.key,
+            'Authorization': `Bearer ${dbConfig.key}`
+          }
+        });
+
+        if (response.ok) {
+          const leads = await response.json();
+          if (leads && leads.length > 0) {
+            const mappedLeads = leads
+              .map(lead => {
+                if (lead.budget_range === "under_50k" || lead.website_type === "ecommerce" || !lead.full_name) {
+                  return null;
+                }
+
+                const firstName = lead.full_name.split(' ')[0] || "Client";
+
+                const priceMap = {
+                  "50k-100k": "₦75k",
+                  "100k-450k": "₦300k",
+                  "500k-2m": "₦1.2m",
+                  "2m-20m": "₦10m"
+                };
+                const displayPrice = priceMap[lead.budget_range] || "₦150k";
+
+                const typeMap = {
+                  basic: "Basic Website",
+                  basic_plus: "Basic+ Website",
+                  standard: "Standard Website",
+                  standard_plus: "Standard+ Website",
+                  listing: "Listing Website",
+                  blog_news: "Blog Website",
+                  advanced: "Advanced Website"
+                };
+                const displayType = typeMap[lead.website_type] || "Standard Website";
+
+                return { 
+                  name: firstName, 
+                  type: displayType, 
+                  price: displayPrice,
+                  timestamp: lead.created_at, // actual ISO timestamp from DB column
+                  fallbackTime: null
+                };
+              })
+              .filter(item => item !== null);
+
+            if (mappedLeads.length > 0) {
+              // Prepend dynamic database items at the top
+              tickerEntries = [...mappedLeads, ...tickerEntries];
+              buildTicker();
+            }
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch fresh live leads:", err);
+      }
+    }
+
+    // Dynamic relative timestamp comparison logic
+    function calculateRelativeTime(dbISOString, fallbackTimeStr) {
+      if (!dbISOString) {
+        return fallbackTimeStr || "Just now";
+      }
+
+      try {
+        const dbDate = new Date(dbISOString);
+        const now = new Date();
+        const diffInMs = now.getTime() - dbDate.getTime();
+
+        if (isNaN(diffInMs) || diffInMs < 0) {
+          return "Just now";
+        }
+
+        const diffInMins = Math.floor(diffInMs / (1000 * 60));
+        if (diffInMins < 1) {
+          return "Just now";
+        }
+        if (diffInMins < 60) {
+          return `${diffInMins} ${diffInMins === 1 ? 'min' : 'mins'} ago`;
+        }
+
+        const diffInHours = Math.floor(diffInMins / 60);
+        if (diffInHours < 24) {
+          return `${diffInHours} ${diffInHours === 1 ? 'hour' : 'hours'} ago`;
+        }
+
+        const diffInDays = Math.floor(diffInHours / 24);
+        return `${diffInDays} ${diffInDays === 1 ? 'day' : 'days'} ago`;
+      } catch (e) {
+        return fallbackTimeStr || "Just now";
+      }
+    }
+
+    // Helper to shuffle fallback list
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    // --- MODERN FLOATING TICKER ROTATOR ---
+    function buildTicker() {
+      displayCurrentTickerItem();
+
+      if (tickerInterval) clearInterval(tickerInterval);
+      startTickerRotation();
+    }
+
+    function displayCurrentTickerItem() {
+      const liveDiv = document.getElementById('ticker-live-content');
+      if (!liveDiv) return;
+
+      const entry = tickerEntries[currentTickerIndex];
+      const displayTimeText = calculateRelativeTime(entry.timestamp, entry.fallbackTime);
+      
+      liveDiv.style.opacity = '0';
+      
+      setTimeout(() => {
+        // Ultimate simple, non-jargon language structure
+        liveDiv.innerHTML = `
+          <div class="flex flex-col gap-0.5 min-w-0">
+            <div class="flex items-center gap-1.5">
+              <span class="text-[9px] font-bold text-amber-600 uppercase tracking-widest bg-amber-50 px-1.5 py-0.5 rounded">Active Request</span>
+              <span class="text-[9px] text-gray-400 font-semibold">${displayTimeText}</span>
+            </div>
+            <p class="text-[12px] leading-tight text-nearBlack font-medium mt-1 truncate">
+              <strong class="text-accent font-bold">${entry.name}</strong> requested for a
+            </p>
+            <span class="text-[11px] font-bold text-mediumGray">${entry.type} · ${entry.price}</span>
+          </div>
+        `;
+        liveDiv.style.opacity = '1';
+      }, 300);
+    }
+
+    function startTickerRotation() {
+      const nextSlide = () => {
+        currentTickerIndex = (currentTickerIndex + 1) % tickerEntries.length;
+        displayCurrentTickerItem();
+
+        const randomSeconds = Math.floor(Math.random() * (12 - 6 + 1)) + 6;
+        tickerInterval = setTimeout(nextSlide, randomSeconds * 1000);
+      };
+
+      const initialSeconds = Math.floor(Math.random() * (12 - 6 + 1)) + 6;
+      tickerInterval = setTimeout(nextSlide, initialSeconds * 1000);
+    }
+
+    // --- ACCORDION UTILITIES ---
+    let openAccordionId = null;
+    function toggleAccordion(id) {
+      const body = document.getElementById(`accordion-body-${id}`);
+      const icon = document.getElementById(`accordion-icon-${id}`);
+
+      if (openAccordionId === id) {
+        body.classList.add('hidden');
+        icon.innerHTML = '<i class="fa-solid fa-plus"></i>';
+        openAccordionId = null;
+        return;
+      }
+
+      if (openAccordionId !== null) {
+        document.getElementById(`accordion-body-${openAccordionId}`).classList.add('hidden');
+        document.getElementById(`accordion-icon-${openAccordionId}`).innerHTML = '<i class="fa-solid fa-plus"></i>';
+      }
+
+      body.classList.remove('hidden');
+      icon.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+      openAccordionId = id;
+    }
+
+    // --- PLANS modal CONTROLLER ---
+    function openPlansModal() {
+      document.getElementById('plans-modal').classList.remove('hidden');
+    }
+
+    function closePlansModal() {
+      document.getElementById('plans-modal').classList.add('hidden');
+    }
+
+    // --- INLINE ERROR NOTIFICATIONS ---
+    function showError(msg) {
+      const errorBox = document.getElementById('form-error-alert');
+      const errorMsg = document.getElementById('form-error-message');
+      errorMsg.textContent = msg;
+      errorBox.classList.remove('hidden');
+      errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Hide active error box
+    function hideError() {
+      document.getElementById('form-error-alert').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
