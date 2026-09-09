@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50 text-slate-800 font-sans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emkoanal International Limited — Clean Interactive Preview</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts - Inter & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emko: {
+                            navy: '#0b132b',
+                            darknavy: '#070d1f',
+                            steel: '#1c2541',
+                            orange: '#f95738',
+                            orangeHover: '#e03e1a',
+                            lightBg: '#f8fafc',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .emko-btn {
+            background-color: #f95738;
+            color: #ffffff;
+        }
+        .emko-btn:hover {
+            background-color: #e03e1a;
+        }
+
+        /* Clean subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="h-full bg-slate-50 text-slate-800 flex flex-col min-h-screen selection:bg-orange-500 selection:text-white">
+
+    <div id="app" class="flex-1 flex flex-col min-h-screen relative">
+        
+        <!-- Persistent Exit Bar (Visible inside sub-views) -->
+        <div id="exit-demo-bar" class="hidden sticky top-0 z-50 bg-slate-900 text-white px-4 py-3 flex items-center justify-between text-xs font-medium shadow-md">
+            <div class="flex items-center space-x-2 min-w-0">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-emko-orange shrink-0"></span>
+                <span class="text-slate-400 truncate">Viewing:</span>
+                <span id="current-module-name" class="font-bold text-white truncate">Website Preview</span>
+            </div>
+            <button onclick="switchView('demo-menu')" class="flex items-center space-x-1.5 bg-slate-800 hover:bg-slate-700 text-white px-3.5 py-1.5 rounded-lg transition-all border border-slate-700 text-xs font-semibold">
+                <i class="fa-solid fa-arrow-left text-[11px]"></i>
+                <span>Back to Menu</span>
+            </button>
+        </div>
+
+        <!-- Toast Notifications Container -->
+        <div id="toast-container" class="fixed bottom-5 right-5 left-5 sm:left-auto z-50 flex flex-col space-y-2 pointer-events-none items-center sm:items-end"></div>
+
+
+        <!-- ========================================================================= -->
+        <!-- 1. DEMO MENU VIEW — ULTRA CLEAN & MINIMAL                                 -->
+        <!-- ========================================================================= -->
+        <section id="view-demo-menu" class="flex-1 flex flex-col justify-center bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-xl mx-auto w-full space-y-8 text-center my-auto">
+
+                <!-- Company Header -->
+                <div class="space-y-2">
+                    <span class="inline-block px-3 py-1 rounded-full bg-orange-100 text-emko-orange text-xs font-bold tracking-wide uppercase">
+                        Client Preview Demo
+                    </span>
+                    <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight font-display">
+                        Emkoanal International
+                    </h1>
+                </div>
+
+                <!-- SINGLE CLEAR PRIMARY DIRECTIVE & BUTTON -->
+                <div class="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-xl space-y-6">
+                    
+                    <div class="space-y-2">
+                        <p class="text-slate-500 text-xs uppercase tracking-wider font-bold text-emko-orange">Instant Action Required</p>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 font-display leading-tight">
+                            Click below to preview your website
+                        </h2>
+                    </div>
+
+                    <button onclick="switchView('client-website')" class="w-full py-4 px-6 emko-btn font-bold rounded-xl text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-3 group">
+                        <span>View Website Demo</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+
+                <!-- HIGH ATTENTION REVENUE & MONEY-MAKING BANNERS -->
+                <div class="pt-2 space-y-3">
+                    <button onclick="toggleRevenueOptions()" id="btn-toggle-revenue" class="w-full bg-gradient-to-r from-amber-500 via-orange-500 to-emko-orange text-white py-4 px-5 rounded-2xl transition-all duration-300 flex items-center justify-between shadow-lg hover:shadow-2xl hover:scale-[1.01] border-2 border-amber-300/40 relative overflow-hidden group">
+                        <!-- Shimmer animation background -->
+                        <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        
+                        <div class="flex items-center space-x-3.5 relative z-10 text-left">
+                            <div class="w-10 h-10 rounded-xl bg-white text-emko-orange flex items-center justify-center text-lg font-black shadow-md shrink-0">
+                                <i class="fa-solid fa-chart-line text-emko-orange text-lg"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="bg-slate-900/40 text-amber-200 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full border border-amber-300/30 tracking-wider">High Profit Features</span>
+                                </div>
+                                <h3 class="text-sm sm:text-base font-black tracking-tight text-white mt-0.5">
+                                    See how to get more business with your website
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-2 relative z-10 shrink-0 ml-2">
+                            <span class="hidden sm:inline-block text-xs font-bold text-amber-100 bg-black/20 px-2.5 py-1 rounded-lg">3 Monetization Tools</span>
+                            <i id="revenue-chevron" class="fa-solid fa-chevron-down text-white group-hover:translate-y-0.5 transition-transform text-sm bg-black/20 p-2 rounded-full"></i>
+                        </div>
+                    </button>
+
+                    <!-- Hidden Features List -->
+                    <div id="revenue-options-container" class="hidden space-y-2 text-left pt-1">
+                        
+                        <!-- AI Sales Assistant -->
+                        <div onclick="switchView('ai-chat-full')" class="bg-white p-3.5 rounded-xl border-2 border-orange-200 hover:border-emko-orange cursor-pointer transition-all flex items-center justify-between group shadow-sm hover:shadow-md">
+                            <div class="flex items-center space-x-3.5">
+                                <div class="w-9 h-9 rounded-xl bg-orange-100 text-emko-orange border border-orange-200 flex items-center justify-center text-sm font-bold shrink-0">
+                                    <i class="fa-solid fa-robot"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-xs sm:text-sm group-hover:text-emko-orange transition-colors">Use AI to answer inquiries & sell EIL services 24/7</h3>
+                                    <span class="inline-block text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 mt-0.5">Direct Revenue Generator</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-slate-400 group-hover:text-emko-orange group-hover:translate-x-1 transition-all text-xs pl-2"></i>
+                        </div>
+
+                        <!-- Customer Payment Portal -->
+                        <div onclick="switchView('customer-dashboard')" class="bg-white p-3.5 rounded-xl border border-slate-200 hover:border-emko-navy cursor-pointer transition-all flex items-center justify-between group shadow-sm hover:shadow-md">
+                            <div class="flex items-center space-x-3.5">
+                                <div class="w-9 h-9 rounded-xl bg-slate-100 text-emko-navy border border-slate-200 flex items-center justify-center text-sm font-bold shrink-0">
+                                    <i class="fa-solid fa-credit-card"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-xs sm:text-sm group-hover:text-emko-orange transition-colors">Let clients pay project invoices directly online</h3>
+                                    <span class="inline-block text-[10px] font-bold text-emko-navy bg-slate-100 px-2 py-0.5 rounded border border-slate-200 mt-0.5">Accelerates Cashflow</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-slate-400 group-hover:text-emko-orange group-hover:translate-x-1 transition-all text-xs pl-2"></i>
+                        </div>
+
+                        <!-- Business Owner Income Tracker -->
+                        <div onclick="switchView('business-dashboard')" class="bg-white p-3.5 rounded-xl border border-slate-200 hover:border-emko-orange cursor-pointer transition-all flex items-center justify-between group shadow-sm hover:shadow-md">
+                            <div class="flex items-center space-x-3.5">
+                                <div class="w-9 h-9 rounded-xl bg-orange-50 text-emko-orange border border-orange-100 flex items-center justify-center text-sm font-bold shrink-0">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-xs sm:text-sm group-hover:text-emko-orange transition-colors">Track your total revenue & client payments</h3>
+                                    <span class="inline-block text-[10px] font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200 mt-0.5">Saves Time</span>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-slate-400 group-hover:text-emko-orange group-hover:translate-x-1 transition-all text-xs pl-2"></i>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================================================= -->
+        <!-- 2. CLIENT WEBSITE PREVIEW                                                 -->
+        <!-- ========================================================================= -->
+        <section id="view-client-website" class="hidden flex-1 flex-col bg-white text-slate-800 min-h-screen relative">
+            
+            <!-- Navbar -->
+            <header class="bg-emko-navy text-white sticky top-0 z-40 shadow-md">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between h-20">
+                        
+                        <!-- Logo -->
+                        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchClientTab('home')">
+                            <div class="w-10 h-10 bg-emko-orange rounded flex items-center justify-center font-black text-white text-xl shadow-md">
+                                EIL
+                            </div>
+                            <div>
+                                <span class="font-display font-black text-lg tracking-wide text-white block leading-tight">EMKOANAL</span>
+                                <span class="text-[10px] text-slate-300 font-semibold tracking-widest uppercase block">International Limited</span>
+                            </div>
+                        </div>
+
+                        <!-- Main Nav -->
+                        <nav class="hidden md:flex items-center space-x-1 text-sm font-medium">
+                            <button onclick="switchClientTab('home')" id="nav-btn-home" class="client-nav-btn px-4 py-2 rounded-md transition-colors text-emko-orange bg-slate-800/80 font-semibold">Home</button>
+                            <button onclick="switchClientTab('services')" id="nav-btn-services" class="client-nav-btn px-4 py-2 rounded-md text-slate-200 hover:text-white transition-colors">Services & Operations</button>
+                            <button onclick="switchClientTab('projects')" id="nav-btn-projects" class="client-nav-btn px-4 py-2 rounded-md text-slate-200 hover:text-white transition-colors">Projects Catalog</button>
+                            <button onclick="switchClientTab('contact')" id="nav-btn-contact" class="client-nav-btn px-4 py-2 rounded-md text-slate-200 hover:text-white transition-colors">Contact / RFQ</button>
+                        </nav>
+
+                        <!-- CTA -->
+                        <div class="hidden sm:flex items-center space-x-3">
+                            <button onclick="switchClientTab('contact')" class="bg-emko-orange hover:bg-emko-orangeHover text-white px-5 py-2.5 rounded-md text-sm font-bold shadow transition-all flex items-center space-x-2">
+                                <span>Request Quote</span>
+                                <i class="fa-solid fa-paper-plane text-xs"></i>
+                            </button>
+                        </div>
+
+                        <!-- Mobile Menu Btn -->
+                        <div class="md:hidden flex items-center">
+                            <button onclick="toggleMobileMenu()" class="text-slate-200 p-2">
+                                <i class="fa-solid fa-bars text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-800 px-4 pt-2 pb-4 space-y-2">
+                    <button onclick="switchClientTab('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-white font-semibold rounded hover:bg-slate-800">Home</button>
+                    <button onclick="switchClientTab('services'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-slate-300 rounded hover:bg-slate-800">Services & Operations</button>
+                    <button onclick="switchClientTab('projects'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-slate-300 rounded hover:bg-slate-800">Projects Catalog</button>
+                    <button onclick="switchClientTab('contact'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-slate-300 rounded hover:bg-slate-800">Contact / RFQ</button>
+                </div>
+            </header>
+
+            <!-- SUB-VIEW 1: HOME -->
+            <div id="client-tab-home" class="client-tab-content flex-1">
+                <div class="relative bg-slate-900 text-white py-16 sm:py-24 border-b border-slate-800">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                            <div class="lg:col-span-7 space-y-6">
+                                <div class="inline-flex items-center space-x-2 bg-slate-800 border border-slate-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-emko-orange">
+                                    <span class="w-2 h-2 rounded-full bg-emko-orange"></span>
+                                    <span>Engineering & Oilfield Services Partner</span>
+                                </div>
+                                <h1 class="text-3xl sm:text-5xl font-black font-display tracking-tight text-white leading-tight">
+                                    Heavy Civil Engineering & Energy Contracting.
+                                </h1>
+                                <p class="text-slate-300 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
+                                    Emkoanal International Limited delivers infrastructure engineering, pipeline maintenance, civil construction, and specialized procurement across Nigeria.
+                                </p>
+                                <div class="pt-2 flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                                    <button onclick="switchClientTab('contact')" class="emko-btn text-white px-7 py-3.5 rounded-md font-bold text-base shadow-lg transition-all text-center">
+                                        Submit Procurement RFQ
+                                    </button>
+                                    <button onclick="switchClientTab('services')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-7 py-3.5 rounded-md font-semibold text-base transition-all text-center">
+                                        Explore Our Services
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-5 bg-white text-slate-900 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl border border-slate-100">
+                                <h3 class="text-lg font-bold border-b border-slate-100 pb-3 flex items-center justify-between text-emko-navy">
+                                    <span>Track Record</span>
+                                    <i class="fa-solid fa-award text-emko-orange"></i>
+                                </h3>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                        <div class="text-3xl font-black text-emko-orange font-display">15+</div>
+                                        <div class="text-xs text-slate-600 mt-1 font-medium">Years Experience</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                        <div class="text-3xl font-black text-slate-900 font-display">₦4.2B+</div>
+                                        <div class="text-xs text-slate-600 mt-1 font-medium">Delivered Contracts</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                        <div class="text-3xl font-black text-slate-900 font-display">100%</div>
+                                        <div class="text-xs text-slate-600 mt-1 font-medium">HSE Safety Record</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                        <div class="text-3xl font-black text-emko-orange font-display">48</div>
+                                        <div class="text-xs text-slate-600 mt-1 font-medium">Major Projects</div>
+                                    </div>
+                                </div>
+                                <div class="pt-2 text-xs text-slate-500 flex items-center justify-between border-t border-slate-100">
+                                    <span>NIPEX & DPR Certified</span>
+                                    <span class="text-emerald-600 font-bold"><i class="fa-solid fa-circle-check mr-1"></i> Verified</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUB-VIEW 2: SERVICES -->
+            <div id="client-tab-services" class="client-tab-content hidden flex-1 py-12 bg-slate-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                    <div class="border-b border-slate-200 pb-4">
+                        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">Services Scope</h1>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 space-y-2">
+                            <h3 class="text-lg font-bold text-emko-navy">1. Civil & Structural Works</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed">Structural piling, reinforced foundations, drainage channels, and asphalt access roads.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 space-y-2">
+                            <h3 class="text-lg font-bold text-emko-navy">2. Pipeline & Site Support</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed">Right-of-way clearing, earth stabilization, bund wall construction, and integrity maintenance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUB-VIEW 3: PROJECTS -->
+            <div id="client-tab-projects" class="client-tab-content hidden flex-1 py-12 bg-slate-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                    <div class="border-b border-slate-200 pb-4">
+                        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">Projects Catalog</h1>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                            <span class="text-[10px] font-bold text-emko-orange uppercase">Oil & Gas</span>
+                            <h3 class="font-bold text-slate-900 text-sm">Escravos Tank Foundation</h3>
+                            <p class="text-slate-500 text-xs">Piling & reinforced concrete slab installation.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                            <span class="text-[10px] font-bold text-blue-600 uppercase">Civil Works</span>
+                            <h3 class="font-bold text-slate-900 text-sm">Port Harcourt Access Road</h3>
+                            <p class="text-slate-500 text-xs">Dual carriageway asphalt paving.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                            <span class="text-[10px] font-bold text-emerald-600 uppercase">Commercial</span>
+                            <h3 class="font-bold text-slate-900 text-sm">Warri Logistics Warehouse</h3>
+                            <p class="text-slate-500 text-xs">Steel framing & heavy foundation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUB-VIEW 4: CONTACT -->
+            <div id="client-tab-contact" class="client-tab-content hidden flex-1 py-12 bg-slate-50">
+                <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                    <div class="border-b border-slate-200 pb-4">
+                        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">Request Quotation</h1>
+                    </div>
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                        <form onsubmit="handleClientContactSubmit(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Name</label>
+                                <input type="text" required placeholder="Engr. Kunle Adebayo" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Company</label>
+                                <input type="text" required placeholder="Chevron Nigeria Ltd" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Project Specs</label>
+                                <textarea rows="3" required placeholder="Describe location and work requirements..." class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm"></textarea>
+                            </div>
+                            <button type="submit" class="w-full emko-btn font-bold py-3 px-6 rounded-lg text-sm">Submit RFQ</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-xs mt-auto">
+                <div class="max-w-7xl mx-auto px-4 text-center sm:flex sm:justify-between sm:text-left">
+                    <span>&copy; 2026 Emkoanal International Limited. All Rights Reserved.</span>
+                    <span class="block sm:inline mt-2 sm:mt-0 text-slate-500">Corporate Preview</span>
+                </div>
+            </footer>
+
+            <!-- Floating Chat Trigger -->
+            <button onclick="switchView('ai-chat-full')" class="fixed bottom-6 right-6 z-40 emko-btn text-white p-4 rounded-full shadow-2xl flex items-center space-x-2 transition-transform hover:scale-105">
+                <i class="fa-solid fa-comments text-lg"></i>
+                <span class="hidden sm:inline font-bold text-xs pr-1">Ask Tunde (AI)</span>
+            </button>
+        </section>
+
+
+        <!-- ========================================================================= -->
+        <!-- 3. AI CHAT INTERFACE                                                     -->
+        <!-- ========================================================================= -->
+        <section id="view-ai-chat-full" class="hidden flex-1 flex-col bg-slate-100 text-slate-800 min-h-screen">
+            <div class="max-w-3xl mx-auto w-full flex-1 flex flex-col p-4 sm:p-6">
+                
+                <div class="bg-white border border-slate-200 rounded-2xl shadow-md flex flex-col flex-1 min-h-[500px] overflow-hidden">
+                    
+                    <!-- Chat Header -->
+                    <div class="bg-slate-50 px-5 py-4 border-b border-slate-200 flex items-center justify-between shrink-0">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-full bg-emko-navy text-white flex items-center justify-center font-bold text-sm shadow">
+                                T
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                                    <span>Tunde — AI Sales & Operations Assistant</span>
+                                    <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Live Edge AI</span>
+                                </h3>
+                                <p class="text-xs text-slate-500">Promotes EIL services, handles tender inquiries & RFQs</p>
+                            </div>
+                        </div>
+
+                        <!-- Clear Chat History -->
+                        <button onclick="clearChatHistory()" title="Reset Chat Conversation" class="text-slate-400 hover:text-red-500 transition-colors px-2 py-1 text-xs font-semibold flex items-center space-x-1 rounded bg-slate-100 hover:bg-slate-200">
+                            <i class="fa-solid fa-rotate-left"></i>
+                            <span class="hidden sm:inline">Reset</span>
+                        </button>
+                    </div>
+
+                    <!-- Chat Stream -->
+                    <div id="chat-messages-container" class="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50/50"></div>
+
+                    <!-- Chat Input -->
+                    <div class="p-4 bg-white border-t border-slate-200 shrink-0">
+                        <form onsubmit="handleChatSubmit(event)" class="flex items-center space-x-2">
+                            <input type="text" id="chat-user-input" required placeholder="Ask about EIL projects, civil engineering, or RFQ quotes..." class="flex-1 bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emko-orange">
+                            <button type="submit" id="chat-send-btn" class="emko-btn font-bold px-5 py-3 rounded-xl shrink-0 flex items-center space-x-1.5">
+                                <span>Send</span>
+                                <i class="fa-solid fa-paper-plane text-xs"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================================================= -->
+        <!-- 4. BUSINESS OWNER DASHBOARD — SIMPLE TABLE + INCOME GRAPH                -->
+        <!-- ========================================================================= -->
+        <section id="view-business-dashboard" class="hidden flex-1 flex-col bg-slate-50 text-slate-800 min-h-screen py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto w-full space-y-6">
+
+                <!-- Header -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-slate-900 font-display">Business Owner Dashboard</h2>
+                        <p class="text-slate-500 text-xs">Track payments and manage client jobs easily.</p>
+                    </div>
+                    <button onclick="openAddClientModal()" class="emko-btn font-bold px-4 py-2.5 rounded-xl text-xs shadow flex items-center space-x-2 self-start sm:self-auto">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Add New Client</span>
+                    </button>
+                </div>
+
+                <!-- INCOME GRAPH CARD -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase text-slate-400 tracking-wider">Total Revenue Tracked</span>
+                            <h3 id="total-revenue-display" class="text-2xl font-black text-slate-900 font-display">₦1,320,000,000</h3>
+                        </div>
+                        <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                            <i class="fa-solid fa-arrow-up mr-1"></i> Active Income
+                        </span>
+                    </div>
+
+                    <!-- Canvas Income Graph -->
+                    <div class="h-40 w-full relative">
+                        <canvas id="incomeCanvas" class="w-full h-full block"></canvas>
+                    </div>
+                </div>
+
+                <!-- SIMPLE CLIENT TABLE -->
+                <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+                    <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+                        <h3 class="font-bold text-slate-900 text-sm">Client Payments & Jobs</h3>
+                        <span class="text-xs text-slate-500" id="client-count-label">3 Clients</span>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-600 uppercase text-[10px] tracking-wider font-bold border-b border-slate-200">
+                                    <th class="py-3 px-6">Client</th>
+                                    <th class="py-3 px-6">Job / Project</th>
+                                    <th class="py-3 px-6">Amount Paid (₦)</th>
+                                    <th class="py-3 px-6">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="business-table-body" class="divide-y divide-slate-200 text-slate-800">
+                                <!-- Dynamic rows inserted by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================================================= -->
+        <!-- 5. CUSTOMER DASHBOARD — CLIENT PAYMENT PORTAL                            -->
+        <!-- ========================================================================= -->
+        <section id="view-customer-dashboard" class="hidden flex-1 flex-col bg-slate-50 text-slate-800 min-h-screen py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-2xl mx-auto w-full space-y-6">
+
+                <!-- Header -->
+                <div>
+                    <h2 class="text-2xl font-extrabold text-slate-900 font-display">Client Payment Portal</h2>
+                    <p class="text-slate-500 text-xs">Review project milestones and issue direct payments to Emkoanal.</p>
+                </div>
+
+                <!-- Payment Box -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-md space-y-6">
+                    
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                        <div>
+                            <span class="text-[10px] uppercase font-bold text-emko-orange tracking-wider">Client Project</span>
+                            <h3 class="text-lg font-bold text-slate-900">Escravos Tank Farm Foundation</h3>
+                            <span class="text-xs text-slate-500">Client: Chevron Nigeria Ltd</span>
+                        </div>
+                        <span id="invoice-status-badge" class="text-xs font-bold text-amber-700 bg-amber-100 border border-amber-200 px-3 py-1 rounded-full">
+                            Payment Due
+                        </span>
+                    </div>
+
+                    <!-- Payment Summary Details -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+                        <div class="flex justify-between text-xs text-slate-600">
+                            <span>Milestone Invoice #3:</span>
+                            <span class="font-semibold text-slate-900">Steel Works & Slab Completion</span>
+                        </div>
+                        <div class="flex justify-between text-sm font-extrabold text-slate-900 border-t border-slate-200 pt-2">
+                            <span>Amount Payable:</span>
+                            <span class="text-emko-orange">₦45,000,000</span>
+                        </div>
+                    </div>
+
+                    <!-- SINGLE CLEAR PAYMENT BUTTON -->
+                    <div id="payment-action-area">
+                        <button onclick="processCustomerPayment()" class="w-full emko-btn font-bold py-4 px-6 rounded-xl text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-lock"></i>
+                            <span>Pay ₦45,000,000 Now</span>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- MODAL: ADD CLIENT FORM                                                   -->
+    <!-- ========================================================================= -->
+    <div id="add-client-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <h3 class="text-base font-bold text-slate-900">Add New Client & Job</h3>
+                <button onclick="closeAddClientModal()" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <form onsubmit="handleAddNewClient(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Client Name</label>
+                    <input type="text" id="modal-client-name" required placeholder="e.g. Shell Nigeria" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Job / Project</label>
+                    <input type="text" id="modal-job-name" required placeholder="e.g. Pipeline Maintenance" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Payment Amount (₦)</label>
+                    <input type="number" id="modal-amount" required placeholder="250000000" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Status</label>
+                    <select id="modal-status" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs">
+                        <option value="Paid">Paid</option>
+                        <option value="Pending">Pending</option>
+                    </select>
+                </div>
+
+                <div class="pt-2 flex justify-end space-x-2">
+                    <button type="button" onclick="closeAddClientModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-bold">Cancel</button>
+                    <button type="submit" class="px-4 py-2 emko-btn font-bold rounded-lg text-xs shadow">Save Client</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- ========================================================================= -->
+    <!-- JAVASCRIPT ENGINE                                                        -->
+    <!-- ========================================================================= -->
+    <script>
+        
+        // AI Endpoint & Credentials
+        const AI_ACCESS_CODE = "7HDTAGA7";
+        const AI_ENDPOINT = "https://xsdudtnszfszlvjpqrij.supabase.co/functions/v1/ai-chat-demo";
+        const AI_APIKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzZHVkdG5zemZzemx2anBxcmlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1NjkwOTIsImV4cCI6MjA4NzE0NTA5Mn0.v51jTNwUGBMzX4PlAdBMNSj25XBVirLhiqStKSsFBuw";
+
+        // Brand-aligned, Sales-focused System Prompt
+        const SYSTEM_PROMPT = `You are Tunde, the primary AI Sales & Operations Assistant for Emkoanal International Limited (EIL).
+Your core mission is to promote EIL's expertise and proactively convert site visitors into qualified contract inquiries, tender leads, and formal Request for Quotation (RFQ) submissions.
+
+BRAND & COMPANY INFORMATION (STRICT CONTEXT):
+- Company Name: Emkoanal International Limited (EIL)
+- Core Expertise: Heavy Civil Engineering, Oilfield Maintenance & Services, Pipeline Right-of-Way Support, Structural Piling, Asphalt Access Roads, Earth Stabilization, Commercial Construction, and Energy Procurement in Nigeria.
+- Certifications & Compliance: Fully NIPEX & DPR Certified, 100% HSE Safety Record (Zero LTI).
+- Track Record: 15+ Years Experience, over ₦4.2B+ in delivered engineering contracts, 48 major projects completed safely across Nigeria.
+- Key Flagship Projects:
+  1. Escravos Tank Farm Foundation (Piling & reinforced concrete slab for Chevron Nigeria Ltd)
+  2. Port Harcourt Pipeline Corridor Access Road (Dual carriageway asphalt paving for Shell SPDC)
+  3. Warri Logistics Warehouse (Steel framing & heavy foundation)
+  4. Swamp Site Preparation & Bund Wall Construction (NDDC / Delta State)
+
+SALES DIRECTIVES & COMMUNICATION STYLE:
+1. ALWAYS PRIORITIZE SELLING: Direct every conversation towards urging the prospect to submit an RFQ or request a quote using the website's RFQ form or emailing quote requests. Highlight EIL's proven track record, NIPEX/DPR compliance, and speed of delivery.
+2. Confidence & Authority: Respond professionally as an expert Nigerian oilfield engineering sales advisor.
+3. Keep responses structured, enthusiastic, and concise (2 to 3 paragraphs max). Use bullet points when listing capabilities.`;
+
+        // Chat History state maintained in LocalStorage
+        let chatHistory = [];
+
+        function loadChatHistory() {
+            try {
+                const stored = localStorage.getItem('emko_ai_chat_history');
+                if (stored) {
+                    chatHistory = JSON.parse(stored);
+                } else {
+                    chatHistory = [
+                        {
+                            role: "assistant",
+                            content: "Hello! I am Tunde, AI Sales & Operations Assistant for Emkoanal International Limited. How can I assist you with heavy civil engineering, pipeline maintenance, or submitting a project RFQ today?"
+                        }
+                    ];
+                    saveChatHistory();
+                }
+            } catch (err) {
+                console.error("Failed to load chat history:", err);
+                chatHistory = [];
+            }
+            renderChatMessages();
+        }
+
+        function saveChatHistory() {
+            try {
+                localStorage.setItem('emko_ai_chat_history', JSON.stringify(chatHistory));
+            } catch (err) {
+                console.error("Failed to save chat history:", err);
+            }
+        }
+
+        function clearChatHistory() {
+            chatHistory = [
+                {
+                    role: "assistant",
+                    content: "Conversation reset! I'm Tunde from Emkoanal International Limited. Ask me anything about our civil engineering capabilities or how to submit a quotation."
+                }
+            ];
+            saveChatHistory();
+            renderChatMessages();
+            showToast("Chat history cleared!");
+        }
+
+        function renderChatMessages() {
+            const container = document.getElementById('chat-messages-container');
+            if (!container) return;
+            container.innerHTML = "";
+
+            chatHistory.forEach(msg => {
+                const isUser = msg.role === "user";
+                const msgDiv = document.createElement('div');
+                msgDiv.className = `flex ${isUser ? 'justify-end' : 'justify-start'} mb-3`;
+                
+                if (isUser) {
+                    msgDiv.innerHTML = `<div class="bg-emko-orange text-white text-xs px-4 py-3 rounded-2xl max-w-[85%] shadow-sm leading-relaxed">${escapeHtml(msg.content)}</div>`;
+                } else {
+                    msgDiv.innerHTML = `<div class="bg-white border border-slate-200 text-slate-800 text-xs px-4 py-3 rounded-2xl max-w-[85%] shadow-sm space-y-1 leading-relaxed">
+                        <div class="flex items-center space-x-1.5 font-bold text-emko-orange text-[11px] mb-1">
+                            <i class="fa-solid fa-robot"></i>
+                            <span>Tunde (AI Sales Advisor)</span>
+                        </div>
+                        <div>${escapeHtml(msg.content).replace(/\n/g, '<br>')}</div>
+                    </div>`;
+                }
+                container.appendChild(msgDiv);
+            });
+
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // Initial Financial Data for Business Owner
+        let clientData = [
+            { client: "Chevron Nigeria Ltd", job: "Escravos Tank Farm Foundation", amount: 420000000, status: "Paid" },
+            { client: "Shell SPDC", job: "Port Harcourt Pipeline Corridor", amount: 650000000, status: "Paid" },
+            { client: "NDDC / Delta State", job: "Swamp Site Preparation", amount: 250000000, status: "Pending" }
+        ];
+
+        // Toggle Expandable Secondary Options
+        function toggleRevenueOptions() {
+            const container = document.getElementById('revenue-options-container');
+            const chevron = document.getElementById('revenue-chevron');
+            
+            if (container.classList.contains('hidden')) {
+                container.classList.remove('hidden');
+                chevron.classList.add('rotate-180');
+            } else {
+                container.classList.add('hidden');
+                chevron.classList.remove('rotate-180');
+            }
+        }
+
+        // View Switcher
+        function switchView(viewId) {
+            const views = [
+                'view-demo-menu',
+                'view-client-website',
+                'view-ai-chat-full',
+                'view-business-dashboard',
+                'view-customer-dashboard'
+            ];
+
+            views.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('hidden');
+            });
+
+            const target = document.getElementById('view-' + viewId);
+            if (target) {
+                target.classList.remove('hidden');
+                window.scrollTo(0, 0);
+            }
+
+            const exitBar = document.getElementById('exit-demo-bar');
+            const moduleNameEl = document.getElementById('current-module-name');
+
+            if (viewId === 'demo-menu') {
+                exitBar.classList.add('hidden');
+            } else {
+                exitBar.classList.remove('hidden');
+                const moduleLabels = {
+                    'client-website': 'Official Website Demo',
+                    'ai-chat-full': 'AI Assistant Tunde',
+                    'business-dashboard': 'Business Owner Dashboard',
+                    'customer-dashboard': 'Customer Payment Portal'
+                };
+                moduleNameEl.textContent = moduleLabels[viewId] || 'Preview';
+            }
+
+            if (viewId === 'business-dashboard') {
+                renderBusinessTable();
+                drawIncomeChart();
+            }
+        }
+
+        // Website Navigation Sub-Tabs
+        function switchClientTab(tabName) {
+            const tabs = ['home', 'services', 'projects', 'contact'];
+            tabs.forEach(t => {
+                const tabEl = document.getElementById('client-tab-' + t);
+                const btnEl = document.getElementById('nav-btn-' + t);
+                if (tabEl) tabEl.classList.add('hidden');
+                if (btnEl) {
+                    btnEl.classList.remove('text-emko-orange', 'bg-slate-800/80', 'font-semibold');
+                    btnEl.classList.add('text-slate-200');
+                }
+            });
+
+            const activeTab = document.getElementById('client-tab-' + tabName);
+            const activeBtn = document.getElementById('nav-btn-' + tabName);
+
+            if (activeTab) activeTab.classList.remove('hidden');
+            if (activeBtn) {
+                activeBtn.classList.add('text-emko-orange', 'bg-slate-800/80', 'font-semibold');
+                activeBtn.classList.remove('text-slate-200');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Business Dashboard Logic
+        function renderBusinessTable() {
+            const tbody = document.getElementById('business-table-body');
+            const totalDisplay = document.getElementById('total-revenue-display');
+            const countLabel = document.getElementById('client-count-label');
+            if (!tbody) return;
+
+            tbody.innerHTML = "";
+            let total = 0;
+
+            clientData.forEach(item => {
+                total += item.amount;
+                const row = document.createElement('tr');
+                row.className = "hover:bg-slate-50 transition-colors";
+
+                const isPaid = item.status === "Paid";
+                const statusBadge = isPaid
+                    ? `<span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold text-[10px]">Paid</span>`
+                    : `<span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold text-[10px]">Pending</span>`;
+
+                row.innerHTML = `
+                    <td class="py-3 px-6 font-bold text-slate-900">${escapeHtml(item.client)}</td>
+                    <td class="py-3 px-6 text-slate-600">${escapeHtml(item.job)}</td>
+                    <td class="py-3 px-6 font-bold text-slate-900">₦${item.amount.toLocaleString()}</td>
+                    <td class="py-3 px-6">${statusBadge}</td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            totalDisplay.textContent = "₦" + total.toLocaleString();
+            countLabel.textContent = clientData.length + " Clients";
+        }
+
+        function drawIncomeChart() {
+            const canvas = document.getElementById('incomeCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            // Responsive scale canvas
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * window.devicePixelRatio;
+            canvas.height = rect.height * window.devicePixelRatio;
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+            const width = rect.width;
+            const height = rect.height;
+
+            ctx.clearRect(0, 0, width, height);
+
+            if (clientData.length === 0) return;
+
+            const padding = 20;
+            const chartWidth = width - padding * 2;
+            const chartHeight = height - padding * 2;
+
+            const maxVal = Math.max(...clientData.map(d => d.amount), 1);
+            const barWidth = Math.min(50, (chartWidth / clientData.length) - 15);
+
+            clientData.forEach((item, idx) => {
+                const x = padding + idx * (chartWidth / clientData.length) + 10;
+                const barH = (item.amount / maxVal) * (chartHeight - 20);
+                const y = height - padding - barH;
+
+                // Bar
+                ctx.fillStyle = item.status === "Paid" ? "#f95738" : "#cbd5e1";
+                ctx.beginPath();
+                ctx.roundRect(x, y, barWidth, barH, [6, 6, 0, 0]);
+                ctx.fill();
+
+                // Label
+                ctx.fillStyle = "#64748b";
+                ctx.font = "10px Inter, sans-serif";
+                ctx.textAlign = "center";
+                ctx.fillText(item.client.split(' ')[0], x + barWidth / 2, height - 4);
+            });
+        }
+
+        // Add Client Modal Logic
+        function openAddClientModal() {
+            document.getElementById('add-client-modal').classList.remove('hidden');
+        }
+
+        function closeAddClientModal() {
+            document.getElementById('add-client-modal').classList.add('hidden');
+        }
+
+        function handleAddNewClient(e) {
+            e.preventDefault();
+            const name = document.getElementById('modal-client-name').value.trim();
+            const job = document.getElementById('modal-job-name').value.trim();
+            const amount = parseFloat(document.getElementById('modal-amount').value) || 0;
+            const status = document.getElementById('modal-status').value;
+
+            clientData.push({ client: name, job: job, amount: amount, status: status });
+            
+            closeAddClientModal();
+            renderBusinessTable();
+            drawIncomeChart();
+            showToast("New Client Saved Successfully!");
+            e.target.reset();
+        }
+
+        // Customer Payment Action
+        function processCustomerPayment() {
+            const badge = document.getElementById('invoice-status-badge');
+            const actionArea = document.getElementById('payment-action-area');
+
+            badge.className = "text-xs font-bold text-emerald-700 bg-emerald-100 border border-emerald-200 px-3 py-1 rounded-full";
+            badge.textContent = "Paid in Full";
+
+            actionArea.innerHTML = `
+                <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-center space-y-1">
+                    <i class="fa-solid fa-circle-check text-emerald-600 text-2xl"></i>
+                    <h4 class="font-bold text-slate-900 text-sm">Payment Confirmed!</h4>
+                    <p class="text-xs text-slate-600">Receipt generated and credited to Emkoanal International Ltd.</p>
+                </div>
+            `;
+
+            showToast("Payment Processed Successfully!");
+        }
+
+        // Async AI Chat Engine with Edge Function & Context History
+        async function handleChatSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('chat-user-input');
+            const sendBtn = document.getElementById('chat-send-btn');
+            const text = input.value.trim();
+            if (!text) return;
+
+            // Append user turn and store
+            chatHistory.push({ role: "user", content: text });
+            saveChatHistory();
+            renderChatMessages();
+
+            input.value = "";
+            input.disabled = true;
+            if (sendBtn) sendBtn.disabled = true;
+
+            // Typing indicator
+            const container = document.getElementById('chat-messages-container');
+            const loadingDiv = document.createElement('div');
+            loadingDiv.id = "chat-typing-indicator";
+            loadingDiv.className = "flex justify-start mb-3";
+            loadingDiv.innerHTML = `<div class="bg-white border border-slate-200 text-slate-600 text-xs px-4 py-3 rounded-2xl shadow-sm flex items-center space-x-2">
+                <i class="fa-solid fa-circle-notch fa-spin text-emko-orange text-sm"></i>
+                <span>Tunde is reviewing specs & formulating sales response...</span>
+            </div>`;
+            container.appendChild(loadingDiv);
+            container.scrollTop = container.scrollHeight;
+
+            // Format messages payload with system prompt first, then all previous turns
+            const apiMessages = [
+                { role: "system", content: SYSTEM_PROMPT },
+                ...chatHistory.map(m => ({ role: m.role, content: m.content }))
+            ];
+
+            try {
+                const response = await fetch(AI_ENDPOINT, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "apikey": AI_APIKEY
+                    },
+                    body: JSON.stringify({
+                        access_code: AI_ACCESS_CODE,
+                        messages: apiMessages
+                    })
+                });
+
+                // Remove loading indicator
+                const indicator = document.getElementById('chat-typing-indicator');
+                if (indicator) indicator.remove();
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const replyText = data.reply || "Thank you for contacting Emkoanal International Limited! For detailed billings and site estimates, please submit your requirements in our RFQ section.";
+                    
+                    chatHistory.push({ role: "assistant", content: replyText });
+                    saveChatHistory();
+                    renderChatMessages();
+                } else {
+                    let friendlyError = "Our AI sales system is temporarily experiencing high volume. Please submit an RFQ directly on the Contact page or email us for an immediate response.";
+                    if (response.status === 403) {
+                        friendlyError = "The AI demo session limit is currently reached. Please feel free to test the RFQ quote request form or view our project catalog!";
+                    }
+                    chatHistory.push({ role: "assistant", content: friendlyError });
+                    saveChatHistory();
+                    renderChatMessages();
+                }
+            } catch (err) {
+                console.error("AI Network Error:", err);
+                const indicator = document.getElementById('chat-typing-indicator');
+                if (indicator) indicator.remove();
+
+                chatHistory.push({
+                    role: "assistant",
+                    content: "Unable to connect to live AI assistant right now. Please check your internet connection or use the Request Quote option."
+                });
+                saveChatHistory();
+                renderChatMessages();
+            } finally {
+                input.disabled = false;
+                if (sendBtn) sendBtn.disabled = false;
+                input.focus();
+            }
+        }
+
+        function handleClientContactSubmit(e) {
+            e.preventDefault();
+            showToast("Quotation Request Sent!");
+            e.target.reset();
+        }
+
+        // Toasts
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            toast.className = "pointer-events-auto bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-xl flex items-center space-x-2 transition-all duration-300 translate-y-2 opacity-0";
+            toast.innerHTML = `
+                <i class="fa-solid fa-circle-check text-emko-orange text-sm"></i>
+                <span>${escapeHtml(message)}</span>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 50);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadChatHistory();
+            switchView('demo-menu');
+        });
+
+        window.addEventListener('resize', () => {
+            drawIncomeChart();
+        });
+    </script>
+</body>
+</html>
