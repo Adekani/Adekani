@@ -48,6 +48,33 @@
             background-color: #e03e1a;
         }
 
+        /* Custom Keyframe Animations */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(249, 87, 56, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(249, 87, 56, 0.6); }
+        }
+
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        .animate-pulse-glow {
+            animation: pulseGlow 3s infinite;
+        }
+
+        .img-hover-zoom {
+            transition: transform 0.5s ease;
+        }
+
+        .card-group:hover .img-hover-zoom {
+            transform: scale(1.08);
+        }
+
         /* Clean subtle scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
@@ -69,7 +96,7 @@
         <!-- Persistent Exit Bar (Visible inside sub-views) -->
         <div id="exit-demo-bar" class="hidden sticky top-0 z-50 bg-slate-900 text-white px-4 py-3 flex items-center justify-between text-xs font-medium shadow-md">
             <div class="flex items-center space-x-2 min-w-0">
-                <span class="inline-block w-2.5 h-2.5 rounded-full bg-emko-orange shrink-0"></span>
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-emko-orange shrink-0 animate-pulse"></span>
                 <span class="text-slate-400 truncate">Viewing:</span>
                 <span id="current-module-name" class="font-bold text-white truncate">Website Preview</span>
             </div>
@@ -81,7 +108,6 @@
 
         <!-- Toast Notifications Container -->
         <div id="toast-container" class="fixed bottom-5 right-5 left-5 sm:left-auto z-50 flex flex-col space-y-2 pointer-events-none items-center sm:items-end"></div>
-
 
         <!-- ========================================================================= -->
         <!-- 1. DEMO MENU VIEW — ULTRA CLEAN & MINIMAL                                 -->
@@ -109,7 +135,7 @@
                         </h2>
                     </div>
 
-                    <button onclick="switchView('client-website')" class="w-full py-4 px-6 emko-btn font-bold rounded-xl text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-3 group">
+                    <button onclick="switchView('client-website')" class="w-full py-4 px-6 emko-btn font-bold rounded-xl text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-3 group animate-pulse-glow">
                         <span>View Website Demo</span>
                         <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                     </button>
@@ -192,204 +218,542 @@
             </div>
         </section>
 
-
         <!-- ========================================================================= -->
-        <!-- 2. CLIENT WEBSITE PREVIEW                                                 -->
+        <!-- 2. CLIENT WEBSITE PREVIEW — EASY 1ST GRADE LANGUAGE & ENHANCED DESIGN    -->
         <!-- ========================================================================= -->
         <section id="view-client-website" class="hidden flex-1 flex-col bg-white text-slate-800 min-h-screen relative">
             
             <!-- Navbar -->
-            <header class="bg-emko-navy text-white sticky top-0 z-40 shadow-md">
+            <header class="bg-emko-navy text-white sticky top-0 z-40 shadow-lg border-b border-slate-800">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex items-center justify-between h-20">
                         
                         <!-- Logo -->
-                        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchClientTab('home')">
-                            <div class="w-10 h-10 bg-emko-orange rounded flex items-center justify-center font-black text-white text-xl shadow-md">
+                        <div class="flex items-center space-x-3 cursor-pointer group" onclick="switchClientTab('home')">
+                            <div class="w-11 h-11 bg-emko-orange rounded-xl flex items-center justify-center font-black text-white text-xl shadow-lg group-hover:rotate-6 transition-transform">
                                 EIL
                             </div>
                             <div>
-                                <span class="font-display font-black text-lg tracking-wide text-white block leading-tight">EMKOANAL</span>
-                                <span class="text-[10px] text-slate-300 font-semibold tracking-widest uppercase block">International Limited</span>
+                                <span class="font-display font-black text-xl tracking-wide text-white block leading-tight">EMKOANAL</span>
+                                <span class="text-[11px] text-orange-300 font-bold tracking-widest uppercase block">Big Building & Oil Works</span>
                             </div>
                         </div>
 
                         <!-- Main Nav -->
-                        <nav class="hidden md:flex items-center space-x-1 text-sm font-medium">
-                            <button onclick="switchClientTab('home')" id="nav-btn-home" class="client-nav-btn px-4 py-2 rounded-md transition-colors text-emko-orange bg-slate-800/80 font-semibold">Home</button>
-                            <button onclick="switchClientTab('services')" id="nav-btn-services" class="client-nav-btn px-4 py-2 rounded-md text-slate-200 hover:text-white transition-colors">Services & Operations</button>
-                            <button onclick="switchClientTab('projects')" id="nav-btn-projects" class="client-nav-btn px-4 py-2 rounded-md text-slate-200 hover:text-white transition-colors">Projects Catalog</button>
-                            <button onclick="switchClientTab('contact')" id="nav-btn-contact" class="client-nav-btn px-4 py-2 rounded-md text-slate-200 hover:text-white transition-colors">Contact / RFQ</button>
+                        <nav class="hidden md:flex items-center space-x-1 text-sm font-semibold">
+                            <button onclick="switchClientTab('home')" id="nav-btn-home" class="client-nav-btn px-4 py-2 rounded-lg transition-all text-emko-orange bg-slate-800 font-bold">Home</button>
+                            <button onclick="switchClientTab('services')" id="nav-btn-services" class="client-nav-btn px-4 py-2 rounded-lg text-slate-200 hover:text-white transition-all">What We Do</button>
+                            <button onclick="switchClientTab('projects')" id="nav-btn-projects" class="client-nav-btn px-4 py-2 rounded-lg text-slate-200 hover:text-white transition-all">Our Big Jobs</button>
+                            <button onclick="switchClientTab('contact')" id="nav-btn-contact" class="client-nav-btn px-4 py-2 rounded-lg text-slate-200 hover:text-white transition-all">Talk To Us</button>
                         </nav>
 
                         <!-- CTA -->
                         <div class="hidden sm:flex items-center space-x-3">
-                            <button onclick="switchClientTab('contact')" class="bg-emko-orange hover:bg-emko-orangeHover text-white px-5 py-2.5 rounded-md text-sm font-bold shadow transition-all flex items-center space-x-2">
-                                <span>Request Quote</span>
-                                <i class="fa-solid fa-paper-plane text-xs"></i>
+                            <button onclick="switchClientTab('contact')" class="bg-emko-orange hover:bg-emko-orangeHover text-white px-5 py-2.5 rounded-xl text-sm font-bold shadow-md hover:shadow-orange-500/30 transition-all flex items-center space-x-2">
+                                <span>Get A Free Price Quote</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
                             </button>
                         </div>
 
                         <!-- Mobile Menu Btn -->
                         <div class="md:hidden flex items-center">
-                            <button onclick="toggleMobileMenu()" class="text-slate-200 p-2">
-                                <i class="fa-solid fa-bars text-xl"></i>
+                            <button onclick="toggleMobileMenu()" class="text-slate-200 p-2 text-xl">
+                                <i class="fa-solid fa-bars"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Mobile Menu -->
-                <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-800 px-4 pt-2 pb-4 space-y-2">
-                    <button onclick="switchClientTab('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-white font-semibold rounded hover:bg-slate-800">Home</button>
-                    <button onclick="switchClientTab('services'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-slate-300 rounded hover:bg-slate-800">Services & Operations</button>
-                    <button onclick="switchClientTab('projects'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-slate-300 rounded hover:bg-slate-800">Projects Catalog</button>
-                    <button onclick="switchClientTab('contact'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 text-slate-300 rounded hover:bg-slate-800">Contact / RFQ</button>
+                <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-800 px-4 pt-3 pb-5 space-y-2">
+                    <button onclick="switchClientTab('home'); toggleMobileMenu()" class="block w-full text-left px-4 py-2.5 text-white font-bold rounded-lg hover:bg-slate-800">Home</button>
+                    <button onclick="switchClientTab('services'); toggleMobileMenu()" class="block w-full text-left px-4 py-2.5 text-slate-300 rounded-lg hover:bg-slate-800">What We Do</button>
+                    <button onclick="switchClientTab('projects'); toggleMobileMenu()" class="block w-full text-left px-4 py-2.5 text-slate-300 rounded-lg hover:bg-slate-800">Our Big Jobs</button>
+                    <button onclick="switchClientTab('contact'); toggleMobileMenu()" class="block w-full text-left px-4 py-2.5 text-slate-300 rounded-lg hover:bg-slate-800">Talk To Us</button>
                 </div>
             </header>
 
-            <!-- SUB-VIEW 1: HOME -->
+            <!-- ========================================================================= -->
+            <!-- SUB-VIEW 1: HOME (SUPER SIMPLE 1ST GRADE LANGUAGE + ANIMATIONS + IMAGES)  -->
+            <!-- ========================================================================= -->
             <div id="client-tab-home" class="client-tab-content flex-1">
-                <div class="relative bg-slate-900 text-white py-16 sm:py-24 border-b border-slate-800">
+                
+                <!-- HERO SECTION -->
+                <div class="relative bg-slate-900 text-white py-16 sm:py-24 overflow-hidden border-b border-slate-800">
+                    <!-- Background Image Overlay with Soft Opacity -->
+                    <div class="absolute inset-0 z-0 opacity-20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=1600&q=80');"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/95 to-slate-900/80 z-0"></div>
+
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                            
                             <div class="lg:col-span-7 space-y-6">
-                                <div class="inline-flex items-center space-x-2 bg-slate-800 border border-slate-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-emko-orange">
-                                    <span class="w-2 h-2 rounded-full bg-emko-orange"></span>
-                                    <span>Engineering & Oilfield Services Partner</span>
+                                <div class="inline-flex items-center space-x-2 bg-slate-800/90 border border-amber-500/30 px-4 py-1.5 rounded-full text-xs font-bold text-amber-400 shadow-inner">
+                                    <i class="fa-solid fa-star text-amber-400 animate-spin" style="animation-duration: 8s;"></i>
+                                    <span>We Build Big Things Very Well</span>
                                 </div>
+
                                 <h1 class="text-3xl sm:text-5xl font-black font-display tracking-tight text-white leading-tight">
-                                    Heavy Civil Engineering & Energy Contracting.
+                                    We Build Big Roads, Safe Pipes & Strong Houses!
                                 </h1>
-                                <p class="text-slate-300 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
-                                    Emkoanal International Limited delivers infrastructure engineering, pipeline maintenance, civil construction, and specialized procurement across Nigeria.
+
+                                <p class="text-slate-300 text-base sm:text-lg max-w-2xl font-medium leading-relaxed">
+                                    Emkoanal helps big companies in Nigeria build strong grounds, smooth tar roads, and big pipe lines. We work fast and we keep everyone safe.
                                 </p>
+
                                 <div class="pt-2 flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-                                    <button onclick="switchClientTab('contact')" class="emko-btn text-white px-7 py-3.5 rounded-md font-bold text-base shadow-lg transition-all text-center">
-                                        Submit Procurement RFQ
+                                    <button onclick="switchClientTab('contact')" class="emko-btn text-white px-8 py-4 rounded-xl font-bold text-base shadow-xl transition-all hover:scale-105 flex items-center justify-center space-x-2 group">
+                                        <span>Ask Us To Build For You</span>
+                                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                                     </button>
-                                    <button onclick="switchClientTab('services')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-7 py-3.5 rounded-md font-semibold text-base transition-all text-center">
-                                        Explore Our Services
+                                    <button onclick="switchClientTab('services')" class="bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 px-8 py-4 rounded-xl font-bold text-base transition-all text-center">
+                                        See What We Can Build
                                     </button>
+                                </div>
+
+                                <!-- Trust Badges -->
+                                <div class="pt-6 border-t border-slate-800 grid grid-cols-3 gap-4 text-center sm:text-left">
+                                    <div class="space-y-1">
+                                        <div class="text-emerald-400 font-bold text-xs flex items-center justify-center sm:justify-start gap-1">
+                                            <i class="fa-solid fa-shield-halved"></i>
+                                            <span>100% Safe</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-400">Nobody gets hurt on our job site.</p>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <div class="text-amber-400 font-bold text-xs flex items-center justify-center sm:justify-start gap-1">
+                                            <i class="fa-solid fa-bolt"></i>
+                                            <span>Super Fast</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-400">We finish work early and right.</p>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <div class="text-blue-400 font-bold text-xs flex items-center justify-center sm:justify-start gap-1">
+                                            <i class="fa-solid fa-award"></i>
+                                            <span>Verified</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-400">Approved by DPR & NIPEX.</p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="lg:col-span-5 bg-white text-slate-900 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl border border-slate-100">
-                                <h3 class="text-lg font-bold border-b border-slate-100 pb-3 flex items-center justify-between text-emko-navy">
-                                    <span>Track Record</span>
-                                    <i class="fa-solid fa-award text-emko-orange"></i>
-                                </h3>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                                        <div class="text-3xl font-black text-emko-orange font-display">15+</div>
-                                        <div class="text-xs text-slate-600 mt-1 font-medium">Years Experience</div>
+                            <!-- Interactive Track Record Card with Float Animation -->
+                            <div class="lg:col-span-5 bg-white text-slate-900 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl border-2 border-slate-100 animate-float">
+                                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                                    <div>
+                                        <span class="text-[10px] font-black uppercase text-emko-orange tracking-widest">Our Big Record</span>
+                                        <h3 class="text-xl font-black text-emko-navy">Why People Trust Us</h3>
                                     </div>
-                                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                                        <div class="text-3xl font-black text-slate-900 font-display">₦4.2B+</div>
-                                        <div class="text-xs text-slate-600 mt-1 font-medium">Delivered Contracts</div>
-                                    </div>
-                                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                                        <div class="text-3xl font-black text-slate-900 font-display">100%</div>
-                                        <div class="text-xs text-slate-600 mt-1 font-medium">HSE Safety Record</div>
-                                    </div>
-                                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                                        <div class="text-3xl font-black text-emko-orange font-display">48</div>
-                                        <div class="text-xs text-slate-600 mt-1 font-medium">Major Projects</div>
+                                    <div class="w-10 h-10 rounded-full bg-orange-100 text-emko-orange flex items-center justify-center text-lg font-bold">
+                                        <i class="fa-solid fa-thumbs-up"></i>
                                     </div>
                                 </div>
-                                <div class="pt-2 text-xs text-slate-500 flex items-center justify-between border-t border-slate-100">
-                                    <span>NIPEX & DPR Certified</span>
-                                    <span class="text-emerald-600 font-bold"><i class="fa-solid fa-circle-check mr-1"></i> Verified</span>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center hover:bg-orange-50/50 transition-colors">
+                                        <div class="text-3xl font-black text-emko-orange font-display">15+</div>
+                                        <div class="text-xs text-slate-600 mt-1 font-bold">Years Building Things</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center hover:bg-orange-50/50 transition-colors">
+                                        <div class="text-3xl font-black text-slate-900 font-display">48</div>
+                                        <div class="text-xs text-slate-600 mt-1 font-bold">Big Jobs Finished</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center hover:bg-orange-50/50 transition-colors">
+                                        <div class="text-3xl font-black text-slate-900 font-display">0</div>
+                                        <div class="text-xs text-slate-600 mt-1 font-bold">Accidents Ever</div>
+                                    </div>
+                                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center hover:bg-orange-50/50 transition-colors">
+                                        <div class="text-3xl font-black text-emko-orange font-display">100%</div>
+                                        <div class="text-xs text-slate-600 mt-1 font-bold">Happy Clients</div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-orange-50 p-4 rounded-2xl border border-orange-200 flex items-center space-x-3">
+                                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=200&q=80" alt="Construction worker" class="w-12 h-12 rounded-xl object-cover border-2 border-emko-orange" onerror="this.src='https://placehold.co/100x100/f95738/ffffff?text=Worker'">
+                                    <div class="text-xs">
+                                        <p class="font-black text-slate-900">"We build strong foundations so nothing falls down."</p>
+                                        <span class="text-slate-500 font-medium">— Engr. Emeka (Lead Builder)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 SIMPLE REASONS SECTION -->
+                <div class="py-16 bg-slate-50">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                        <div class="text-center space-y-2 max-w-2xl mx-auto">
+                            <span class="text-xs font-black text-emko-orange uppercase tracking-wider">Simple & Easy</span>
+                            <h2 class="text-2xl sm:text-4xl font-black text-slate-900 font-display">3 Simple Reasons To Pick Us</h2>
+                            <p class="text-slate-600 text-sm">We make big construction simple for everyone.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            
+                            <!-- Card 1 -->
+                            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-md hover:shadow-xl transition-all card-group space-y-4">
+                                <div class="w-14 h-14 bg-orange-100 text-emko-orange rounded-2xl flex items-center justify-center text-2xl font-black">
+                                    <i class="fa-solid fa-truck-monster"></i>
+                                </div>
+                                <h3 class="text-xl font-extrabold text-slate-900">1. We Have Big Yellow Machines</h3>
+                                <p class="text-slate-600 text-xs leading-relaxed font-medium">
+                                    We do not borrow machines. We own big diggers, smooth road rollers, and strong cranes. This means we start your work today without waiting.
+                                </p>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-md hover:shadow-xl transition-all card-group space-y-4">
+                                <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl font-black">
+                                    <i class="fa-solid fa-shield-heart"></i>
+                                </div>
+                                <h3 class="text-xl font-extrabold text-slate-900">2. Very Safe Workers</h3>
+                                <p class="text-slate-600 text-xs leading-relaxed font-medium">
+                                    Our workers wear hard boots, bright helmets, and safety glasses. No one gets hurt on our ground. Safety comes first always.
+                                </p>
+                            </div>
+
+                            <!-- Card 3 -->
+                            <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-md hover:shadow-xl transition-all card-group space-y-4">
+                                <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl font-black">
+                                    <i class="fa-solid fa-piggy-bank"></i>
+                                </div>
+                                <h3 class="text-xl font-extrabold text-slate-900">3. Good Price For Good Work</h3>
+                                <p class="text-slate-600 text-xs leading-relaxed font-medium">
+                                    We do not trick you. We give you a fair price to lay good tar, dig big trenches, or build solid walls. You get what you paid for.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHOTO SHOWCASE BANNER -->
+                <div class="py-12 bg-slate-900 text-white relative overflow-hidden">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                            <div>
+                                <h2 class="text-2xl font-black font-display text-white">See Our Real Machines & Works</h2>
+                                <p class="text-slate-400 text-xs mt-1">We work across Delta, Rivers, Lagos, and Port Harcourt.</p>
+                            </div>
+                            <button onclick="switchClientTab('projects')" class="bg-emko-orange hover:bg-emko-orangeHover text-white px-6 py-3 rounded-xl font-bold text-xs shadow-md transition-all">
+                                View All Photos
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="relative h-44 rounded-2xl overflow-hidden group shadow-lg border border-slate-800">
+                                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=600&q=80" alt="Worker on site" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x300/1c2541/ffffff?text=Oilfield'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent p-3 flex items-end">
+                                    <span class="text-xs font-bold text-white">Safe Oil Field Work</span>
+                                </div>
+                            </div>
+
+                            <div class="relative h-44 rounded-2xl overflow-hidden group shadow-lg border border-slate-800">
+                                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" alt="Road building" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x300/1c2541/ffffff?text=Roads'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent p-3 flex items-end">
+                                    <span class="text-xs font-bold text-white">Tar Road Paving</span>
+                                </div>
+                            </div>
+
+                            <div class="relative h-44 rounded-2xl overflow-hidden group shadow-lg border border-slate-800">
+                                <img src="https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=600&q=80" alt="Pipeline maintenance" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x300/1c2541/ffffff?text=Pipes'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent p-3 flex items-end">
+                                    <span class="text-xs font-bold text-white">Big Water & Pipe Lines</span>
+                                </div>
+                            </div>
+
+                            <div class="relative h-44 rounded-2xl overflow-hidden group shadow-lg border border-slate-800">
+                                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" alt="Building site" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x300/1c2541/ffffff?text=Building'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent p-3 flex items-end">
+                                    <span class="text-xs font-bold text-white">Steel Warehouse</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- WHAT HAPPY CLIENTS SAY -->
+                <div class="py-16 bg-white border-t border-slate-100">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                        <div class="text-center space-y-2">
+                            <span class="text-xs font-black text-emko-orange uppercase">Happy People</span>
+                            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 font-display">What Big Companies Say About Us</h2>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            
+                            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
+                                <div class="flex items-center space-x-1 text-amber-400 text-sm">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-slate-700 text-xs font-medium italic leading-relaxed">
+                                    "Emkoanal built a very hard concrete ground for our big oil tanks in Escravos. They worked fast and didn't break anything. Good job!"
+                                </p>
+                                <div class="flex items-center space-x-3 pt-2 border-t border-slate-200">
+                                    <div class="w-8 h-8 rounded-full bg-emko-navy text-white font-black text-xs flex items-center justify-center">C</div>
+                                    <div>
+                                        <h4 class="font-bold text-xs text-slate-900">Chevron Nigeria Manager</h4>
+                                        <span class="text-[10px] text-slate-500">Escravos Tank Farm</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
+                                <div class="flex items-center space-x-1 text-amber-400 text-sm">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-slate-700 text-xs font-medium italic leading-relaxed">
+                                    "They paved a long smooth tar road in Port Harcourt for our heavy trailers. Rain falls every day but the road is still strong."
+                                </p>
+                                <div class="flex items-center space-x-3 pt-2 border-t border-slate-200">
+                                    <div class="w-8 h-8 rounded-full bg-emko-orange text-white font-black text-xs flex items-center justify-center">S</div>
+                                    <div>
+                                        <h4 class="font-bold text-xs text-slate-900">Shell SPDC Engineer</h4>
+                                        <span class="text-[10px] text-slate-500">Port Harcourt Access Road</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- SUB-VIEW 2: SERVICES -->
+            <!-- ========================================================================= -->
+            <!-- SUB-VIEW 2: SERVICES (WHAT WE DO - SUPER EASY ENGLISH)                   -->
+            <!-- ========================================================================= -->
             <div id="client-tab-services" class="client-tab-content hidden flex-1 py-12 bg-slate-50">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-                    <div class="border-b border-slate-200 pb-4">
-                        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">Services Scope</h1>
+                    
+                    <div class="border-b border-slate-200 pb-4 text-center sm:text-left space-y-1">
+                        <span class="text-xs font-bold text-emko-orange uppercase">Easy Explanation</span>
+                        <h1 class="text-2xl sm:text-4xl font-black text-slate-900 font-display">What We Can Build For You</h1>
+                        <p class="text-slate-500 text-xs">We do four big things very well.</p>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white p-6 rounded-xl border border-slate-200 space-y-2">
-                            <h3 class="text-lg font-bold text-emko-navy">1. Civil & Structural Works</h3>
-                            <p class="text-slate-600 text-xs leading-relaxed">Structural piling, reinforced foundations, drainage channels, and asphalt access roads.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                        <!-- Service 1 -->
+                        <div class="bg-white rounded-3xl border border-slate-200 shadow-md overflow-hidden card-group hover:shadow-xl transition-all">
+                            <div class="h-48 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80" alt="Concrete building" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/600x400/0b132b/ffffff?text=Concrete'">
+                                <div class="absolute top-3 left-3 bg-emko-orange text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Work 1</div>
+                            </div>
+                            <div class="p-6 space-y-3">
+                                <h3 class="text-xl font-extrabold text-emko-navy">1. Strong Floors & Concrete Bases</h3>
+                                <p class="text-slate-600 text-xs leading-relaxed font-medium">
+                                    We mix hard cement, sand, and iron rods to make heavy floors. You can put big generator sets, heavy tanks, or large houses on top without cracking.
+                                </p>
+                                <ul class="text-xs text-slate-600 space-y-1 font-semibold pt-1">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Hard ground for heavy oil tanks</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Iron pillaring deep into soft soil</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="bg-white p-6 rounded-xl border border-slate-200 space-y-2">
-                            <h3 class="text-lg font-bold text-emko-navy">2. Pipeline & Site Support</h3>
-                            <p class="text-slate-600 text-xs leading-relaxed">Right-of-way clearing, earth stabilization, bund wall construction, and integrity maintenance.</p>
+
+                        <!-- Service 2 -->
+                        <div class="bg-white rounded-3xl border border-slate-200 shadow-md overflow-hidden card-group hover:shadow-xl transition-all">
+                            <div class="h-48 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" alt="Road building" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/600x400/0b132b/ffffff?text=Roads'">
+                                <div class="absolute top-3 left-3 bg-emko-orange text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Work 2</div>
+                            </div>
+                            <div class="p-6 space-y-3">
+                                <h3 class="text-xl font-extrabold text-emko-navy">2. Smooth Tar Roads</h3>
+                                <p class="text-slate-600 text-xs leading-relaxed font-medium">
+                                    We flatten rough dirt roads and pour hot black tar on top. Big trucks and trailers can drive smoothly even when heavy rain falls.
+                                </p>
+                                <ul class="text-xs text-slate-600 space-y-1 font-semibold pt-1">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Asphalt roads for oil farms</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Drainage gutters so water moves away</li>
+                                </ul>
+                            </div>
                         </div>
+
+                        <!-- Service 3 -->
+                        <div class="bg-white rounded-3xl border border-slate-200 shadow-md overflow-hidden card-group hover:shadow-xl transition-all">
+                            <div class="h-48 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=800&q=80" alt="Pipeline digging" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/600x400/0b132b/ffffff?text=Pipes'">
+                                <div class="absolute top-3 left-3 bg-emko-orange text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Work 3</div>
+                            </div>
+                            <div class="p-6 space-y-3">
+                                <h3 class="text-xl font-extrabold text-emko-navy">3. Pipe Line Protection & Digging</h3>
+                                <p class="text-slate-600 text-xs leading-relaxed font-medium">
+                                    We clear bushes around long steel oil pipes. We build dirt walls around them so oil does not spill into rivers or farms.
+                                </p>
+                                <ul class="text-xs text-slate-600 space-y-1 font-semibold pt-1">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Clearing tall bushes around pipes</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Building high dirt walls (bund walls)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Service 4 -->
+                        <div class="bg-white rounded-3xl border border-slate-200 shadow-md overflow-hidden card-group hover:shadow-xl transition-all">
+                            <div class="h-48 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Building construction" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/600x400/0b132b/ffffff?text=Steel'">
+                                <div class="absolute top-3 left-3 bg-emko-orange text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Work 4</div>
+                            </div>
+                            <div class="p-6 space-y-3">
+                                <h3 class="text-xl font-extrabold text-emko-navy">4. Steel Warehouses & Houses</h3>
+                                <p class="text-slate-600 text-xs leading-relaxed font-medium">
+                                    We build big steel houses to store boxes, machines, and tools. We also build office houses with roofs, doors, and bright lights.
+                                </p>
+                                <ul class="text-xs text-slate-600 space-y-1 font-semibold pt-1">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Heavy steel frame buildings</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Fences and security gates</li>
+                                </ul>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
 
-            <!-- SUB-VIEW 3: PROJECTS -->
+            <!-- ========================================================================= -->
+            <!-- SUB-VIEW 3: PROJECTS CATALOG (SIMPLE EXPLANATIONS & PHOTOS)                -->
+            <!-- ========================================================================= -->
             <div id="client-tab-projects" class="client-tab-content hidden flex-1 py-12 bg-slate-50">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-                    <div class="border-b border-slate-200 pb-4">
-                        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">Projects Catalog</h1>
+                    
+                    <div class="border-b border-slate-200 pb-4 text-center sm:text-left space-y-1">
+                        <span class="text-xs font-bold text-emko-orange uppercase">Photos of Our Work</span>
+                        <h1 class="text-2xl sm:text-4xl font-black text-slate-900 font-display">Big Projects We Have Finished</h1>
+                        <p class="text-slate-500 text-xs">Look at what we built for big clients in Nigeria.</p>
                     </div>
+
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-2">
-                            <span class="text-[10px] font-bold text-emko-orange uppercase">Oil & Gas</span>
-                            <h3 class="font-bold text-slate-900 text-sm">Escravos Tank Foundation</h3>
-                            <p class="text-slate-500 text-xs">Piling & reinforced concrete slab installation.</p>
+                        
+                        <!-- Project 1 -->
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden card-group hover:shadow-lg transition-all space-y-3">
+                            <div class="h-44 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=600&q=80" alt="Escravos project" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x250/1c2541/ffffff?text=Escravos'">
+                                <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">100% Finished</span>
+                            </div>
+                            <div class="p-5 space-y-2">
+                                <span class="text-[10px] font-black text-emko-orange uppercase tracking-wider">Chevron Nigeria</span>
+                                <h3 class="font-bold text-slate-900 text-base">Escravos Tank Floor</h3>
+                                <p class="text-slate-600 text-xs leading-relaxed">
+                                    We put heavy iron rods into the ground and poured cement to hold giant oil tanks.
+                                </p>
+                            </div>
                         </div>
-                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-2">
-                            <span class="text-[10px] font-bold text-blue-600 uppercase">Civil Works</span>
-                            <h3 class="font-bold text-slate-900 text-sm">Port Harcourt Access Road</h3>
-                            <p class="text-slate-500 text-xs">Dual carriageway asphalt paving.</p>
+
+                        <!-- Project 2 -->
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden card-group hover:shadow-lg transition-all space-y-3">
+                            <div class="h-44 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" alt="Port Harcourt road" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x250/1c2541/ffffff?text=Road'">
+                                <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">100% Finished</span>
+                            </div>
+                            <div class="p-5 space-y-2">
+                                <span class="text-[10px] font-black text-blue-600 uppercase tracking-wider">Shell SPDC</span>
+                                <h3 class="font-bold text-slate-900 text-base">Port Harcourt Tar Road</h3>
+                                <p class="text-slate-600 text-xs leading-relaxed">
+                                    We paved a long smooth black tar road so heavy trucks do not get stuck in deep mud.
+                                </p>
+                            </div>
                         </div>
-                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-2">
-                            <span class="text-[10px] font-bold text-emerald-600 uppercase">Commercial</span>
-                            <h3 class="font-bold text-slate-900 text-sm">Warri Logistics Warehouse</h3>
-                            <p class="text-slate-500 text-xs">Steel framing & heavy foundation.</p>
+
+                        <!-- Project 3 -->
+                        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden card-group hover:shadow-lg transition-all space-y-3">
+                            <div class="h-44 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" alt="Warri warehouse" class="w-full h-full object-cover img-hover-zoom" onerror="this.src='https://placehold.co/400x250/1c2541/ffffff?text=Warehouse'">
+                                <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">100% Finished</span>
+                            </div>
+                            <div class="p-5 space-y-2">
+                                <span class="text-[10px] font-black text-purple-600 uppercase tracking-wider">Warri Logistics</span>
+                                <h3 class="font-bold text-slate-900 text-base">Warri Big Steel House</h3>
+                                <p class="text-slate-600 text-xs leading-relaxed">
+                                    We set up giant steel beams and zinc roofs to store oil field tools safely.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- SIMPLE FREQUENTLY ASKED QUESTIONS (FAQ) -->
+                    <div class="pt-8 border-t border-slate-200 space-y-6">
+                        <div class="text-center space-y-1 max-w-xl mx-auto">
+                            <span class="text-xs font-bold text-emko-orange uppercase">Got Questions?</span>
+                            <h2 class="text-2xl font-black text-slate-900">Simple Answers To Easy Questions</h2>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                            <div class="bg-white p-5 rounded-2xl border border-slate-200 space-y-1">
+                                <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-question text-emko-orange"></i>
+                                    Do you work in muddy water areas?
+                                </h4>
+                                <p class="text-xs text-slate-600 leading-relaxed pl-6">
+                                    Yes! We have big special machines that work inside deep mud, rivers, and swamp lands in Delta and Rivers State.
+                                </p>
+                            </div>
+
+                            <div class="bg-white p-5 rounded-2xl border border-slate-200 space-y-1">
+                                <h4 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-question text-emko-orange"></i>
+                                    How fast do you start working?
+                                </h4>
+                                <p class="text-xs text-slate-600 leading-relaxed pl-6">
+                                    Very fast! Once we talk and agree on the work price, our workers and machines arrive at your site in 2 days.
+                                </p>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
-            <!-- SUB-VIEW 4: CONTACT -->
+            <!-- ========================================================================= -->
+            <!-- SUB-VIEW 4: CONTACT / PRICE QUOTE FORM                                   -->
+            <!-- ========================================================================= -->
             <div id="client-tab-contact" class="client-tab-content hidden flex-1 py-12 bg-slate-50">
                 <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-                    <div class="border-b border-slate-200 pb-4">
-                        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">Request Quotation</h1>
+                    
+                    <div class="border-b border-slate-200 pb-4 text-center space-y-1">
+                        <span class="text-xs font-bold text-emko-orange uppercase">Easy Step</span>
+                        <h1 class="text-2xl sm:text-4xl font-black text-slate-900 font-display">Tell Us What You Want To Build</h1>
+                        <p class="text-slate-500 text-xs">Fill the 3 boxes below. We will call you right away with a fair price.</p>
                     </div>
-                    <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
-                        <form onsubmit="handleClientContactSubmit(event)" class="space-y-4">
+
+                    <div class="bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 shadow-xl space-y-6">
+                        <form onsubmit="handleClientContactSubmit(event)" class="space-y-5">
                             <div>
-                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Name</label>
-                                <input type="text" required placeholder="Engr. Kunle Adebayo" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm">
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">1. What Is Your Full Name?</label>
+                                <input type="text" required placeholder="e.g. Engr. Kunle Adebayo" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-emko-orange outline-none">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Company</label>
-                                <input type="text" required placeholder="Chevron Nigeria Ltd" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm">
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">2. What Is Your Company Name?</label>
+                                <input type="text" required placeholder="e.g. Shell / Chevron / My Business" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-emko-orange outline-none">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Project Specs</label>
-                                <textarea rows="3" required placeholder="Describe location and work requirements..." class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm"></textarea>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">3. Tell Us What You Need Us To Dig Or Build</label>
+                                <textarea rows="4" required placeholder="e.g. I need a smooth tar road for my truck park in Port Harcourt..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-emko-orange outline-none"></textarea>
                             </div>
-                            <button type="submit" class="w-full emko-btn font-bold py-3 px-6 rounded-lg text-sm">Submit RFQ</button>
+                            <button type="submit" class="w-full emko-btn font-extrabold py-4 px-6 rounded-xl text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2">
+                                <span>Send Request & Get Fair Price</span>
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
                         </form>
                     </div>
+
                 </div>
             </div>
 
             <!-- Footer -->
             <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-xs mt-auto">
                 <div class="max-w-7xl mx-auto px-4 text-center sm:flex sm:justify-between sm:text-left">
-                    <span>&copy; 2026 Emkoanal International Limited. All Rights Reserved.</span>
-                    <span class="block sm:inline mt-2 sm:mt-0 text-slate-500">Corporate Preview</span>
+                    <span>&copy; 2026 Emkoanal International Limited. We build strong and safe roads, buildings & oil fields.</span>
+                    <span class="block sm:inline mt-2 sm:mt-0 text-slate-500">Official Website Preview</span>
                 </div>
             </footer>
 
             <!-- Floating Chat Trigger -->
-            <button onclick="switchView('ai-chat-full')" class="fixed bottom-6 right-6 z-40 emko-btn text-white p-4 rounded-full shadow-2xl flex items-center space-x-2 transition-transform hover:scale-105">
-                <i class="fa-solid fa-comments text-lg"></i>
-                <span class="hidden sm:inline font-bold text-xs pr-1">Ask Tunde (AI)</span>
+            <button onclick="switchView('ai-chat-full')" class="fixed bottom-6 right-6 z-40 emko-btn text-white p-4 rounded-full shadow-2xl flex items-center space-x-2 transition-transform hover:scale-110 border-2 border-white animate-bounce" style="animation-duration: 3s;">
+                <i class="fa-solid fa-comments text-xl"></i>
+                <span class="hidden sm:inline font-black text-xs pr-1">Talk To Tunde (AI Helper)</span>
             </button>
         </section>
 
@@ -614,25 +978,19 @@
         const AI_ENDPOINT = "https://xsdudtnszfszlvjpqrij.supabase.co/functions/v1/ai-chat-demo";
         const AI_APIKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzZHVkdG5zemZzemx2anBxcmlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1NjkwOTIsImV4cCI6MjA4NzE0NTA5Mn0.v51jTNwUGBMzX4PlAdBMNSj25XBVirLhiqStKSsFBuw";
 
-        // Brand-aligned, Sales-focused System Prompt
-        const SYSTEM_PROMPT = `You are Tunde, the primary AI Sales & Operations Assistant for Emkoanal International Limited (EIL).
-Your core mission is to promote EIL's expertise and proactively convert site visitors into qualified contract inquiries, tender leads, and formal Request for Quotation (RFQ) submissions.
+        // Brand-aligned, Sales-focused System Prompt in Simple Friendly English
+        const SYSTEM_PROMPT = `You are Tunde, the friendly AI Assistant for Emkoanal International Limited (EIL).
+Your job is to talk to people in very simple, easy, clear English so anyone can understand!
+You help people understand what EIL builds (big tar roads, strong concrete floors, big pipes, steel warehouses).
+Always encourage people to click 'Talk To Us' or request a price quote so EIL can build for them!
 
-BRAND & COMPANY INFORMATION (STRICT CONTEXT):
-- Company Name: Emkoanal International Limited (EIL)
-- Core Expertise: Heavy Civil Engineering, Oilfield Maintenance & Services, Pipeline Right-of-Way Support, Structural Piling, Asphalt Access Roads, Earth Stabilization, Commercial Construction, and Energy Procurement in Nigeria.
-- Certifications & Compliance: Fully NIPEX & DPR Certified, 100% HSE Safety Record (Zero LTI).
-- Track Record: 15+ Years Experience, over ₦4.2B+ in delivered engineering contracts, 48 major projects completed safely across Nigeria.
-- Key Flagship Projects:
-  1. Escravos Tank Farm Foundation (Piling & reinforced concrete slab for Chevron Nigeria Ltd)
-  2. Port Harcourt Pipeline Corridor Access Road (Dual carriageway asphalt paving for Shell SPDC)
-  3. Warri Logistics Warehouse (Steel framing & heavy foundation)
-  4. Swamp Site Preparation & Bund Wall Construction (NDDC / Delta State)
+COMPANY FACTS (KEEP THEM SUPER SIMPLE):
+- Name: Emkoanal International Limited (EIL)
+- What we build: Big tar roads, hard concrete floors for oil tanks, digging big trenches for pipes, building steel warehouses in Nigeria.
+- Safety: 100% safe. Zero accidents ever.
+- Record: 15+ years experience, 48 big jobs finished safely for big companies like Chevron and Shell.
 
-SALES DIRECTIVES & COMMUNICATION STYLE:
-1. ALWAYS PRIORITIZE SELLING: Direct every conversation towards urging the prospect to submit an RFQ or request a quote using the website's RFQ form or emailing quote requests. Highlight EIL's proven track record, NIPEX/DPR compliance, and speed of delivery.
-2. Confidence & Authority: Respond professionally as an expert Nigerian oilfield engineering sales advisor.
-3. Keep responses structured, enthusiastic, and concise (2 to 3 paragraphs max). Use bullet points when listing capabilities.`;
+Keep your answers short, cheerful, friendly, and easy to read!`;
 
         // Chat History state maintained in LocalStorage
         let chatHistory = [];
@@ -646,7 +1004,7 @@ SALES DIRECTIVES & COMMUNICATION STYLE:
                     chatHistory = [
                         {
                             role: "assistant",
-                            content: "Hello! I am Tunde, AI Sales & Operations Assistant for Emkoanal International Limited. How can I assist you with heavy civil engineering, pipeline maintenance, or submitting a project RFQ today?"
+                            content: "Hello! I am Tunde, your helper at Emkoanal. We build big tar roads, hard floors, and steel houses. How can I help you today?"
                         }
                     ];
                     saveChatHistory();
